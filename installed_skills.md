@@ -40,3 +40,17 @@
 - 女娲造人：https://github.com/alchaincyf/nuwa-skill
 - A股数据：https://github.com/simonlin1212/a-stock-data
 - 金融技能：https://github.com/RKiding/Awesome-finance-skills
+
+---
+
+## 新增 Skills（2026-06-13）
+
+| # | Skill 名称 | 来源 | 说明 |
+|---|-----------|------|------|
+| 11 | `DeepAnalyze` | ruc-datalab/DeepAnalyze | 首个 Agentic LLM 自主数据科学框架：自动完成数据准备、分析、建模、可视化、报告生成全流程。支持结构化/半结构化/非结构化多源数据研究，输出分析师级研究报告。配套 DeepAnalyze-8B 模型 + 500K 训练数据全开源 |
+| 12 | `daily_stock_analysis` | ZhuLinsen/daily_stock_analysis | A 股/港股/美股个股深度分析引擎。22 维数据 + 52 评委量化裁决 + 6 种机构估值建模（D CF/Comps/LBO 等）。触发：个股走势预测、K 线复盘、多维度评分、估值对比 |
+
+## 新增来源链接
+
+- DeepAnalyze：https://github.com/ruc-datalab/DeepAnalyze
+- 每日股票分析：https://github.com/ZhuLinsen/daily_stock_analysis

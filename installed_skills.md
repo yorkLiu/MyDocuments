@@ -50,9 +50,11 @@
 | 11 | `DeepAnalyze` | ruc-datalab/DeepAnalyze | 首个 Agentic LLM 自主数据科学框架：自动完成数据准备、分析、建模、可视化、报告生成全流程。支持结构化/半结构化/非结构化多源数据研究，输出分析师级研究报告。配套 DeepAnalyze-8B 模型 + 500K 训练数据全开源 |
 | 12 | `daily_stock_analysis` | ZhuLinsen/daily_stock_analysis | A 股/港股/美股个股深度分析引擎。22 维数据 + 52 评委量化裁决 + 6 种机构估值建模（D CF/Comps/LBO 等）。触发：个股走势预测、K 线复盘、多维度评分、估值对比 |
 | 13 | `short-term-stock-picker` | online0001/short-term-stock-picker | 短线股票筛选工具，基于 AKShare 数据。条件：流通市值≤150亿、近20日有涨停、非ST、近3日主力净流入估算、换手率≤10%。输出 result.csv 含代码/名称/涨停次数/市值/换手率/封板资金/行业板块 |
+| 14 | `UZI-Skill`（游资） | wbh604/UZI-Skill | A 股/港股/美股个股深度分析引擎。**66 位评审团 × 9 大流派 × 22 维数据 × 22 种机构方法**。零 API key，全免费数据源。触发命令：`/stock-deep-analyzer:analyze-stock 贵州茅台`（完整分析，5-8min）、`/stock-deep-analyzer:quick-scan 002217`（30秒速判）、`/stock-deep-analyzer:scan-trap 002217`（杀猪盘排查）、`/stock-deep-analyzer:dcf 600519`（DCF 估值专项）。输出 HTML 报告 + 朋友圈竖图 + 微信群战报 |
 
 ## 新增来源链接
 
 - DeepAnalyze：https://github.com/ruc-datalab/DeepAnalyze
 - 每日股票分析：https://github.com/ZhuLinsen/daily_stock_analysis
 - 短线选股：https://github.com/online0001/short-term-stock-picker
+- UZI 游资：https://github.com/wbh604/UZI-Skill

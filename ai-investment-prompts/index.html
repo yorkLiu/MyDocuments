@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI投资提示词大全（持续更新）</title>
+    <meta name="description" content="探索AI投资提示词管理平台，发现海量高质量AI投资分析模板，覆盖个股分析、行业研究、市场分析等场景，助您高效创作，激发无限灵感。">
+    <meta name="keywords" content="AI投资,提示词模板,DeepSeek,个股分析,行业研究,市场分析,A股,投资工具">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="AI投资提示词大全（持续更新）">
+    <meta property="og:description" content="探索AI投资提示词管理平台，发现海量高质量AI投资分析模板">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        accent: '#60a5fa',
+                        dark: '#0f172a',
+                        muted: '#64748b',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .category-tag {
+            transition: all 0.2s ease;
+        }
+        
+        .category-tag:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .category-tag.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .prompt-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .prompt-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .heart-icon {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .heart-icon:hover {
+            color: #ef4444;
+            transform: scale(1.1);
+        }
+        
+        .heart-icon.liked {
+            color: #ef4444;
+        }
+        
+        .copy-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #2563eb;
+        }
+        
+        .use-btn {
+            background-color: transparent;
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .use-btn:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 min-h-screen">
+    
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-sm"></i>
+                    </div>
+                    <span class="text-lg font-semibold text-gray-900">AI投资提示词大全（持续更新）</span>
+                </div>
+                
+                <!-- Search -->
+                <div class="flex-1 max-w-md mx-8">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input 
+                            type="text" 
+                            id="global-search"
+                            placeholder="Search for prompts..." 
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                        >
+                    </div>
+                </div>
+                
+                <!-- Product Hunt Badge -->
+                <a href="#" class="flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-900">
+                    <span>Product Hunt</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                AI投资提示词大全 <span class="text-gray-600">(持续更新)</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-6">
+                探索AI投资提示词管理平台，发现海量高质量AI投资分析模板，覆盖个股分析、行业研究、市场分析等场景，助您高效创作，激发无限灵感。
+            </p>
+            <div class="text-2xl font-semibold text-gray-500">
+                <span id="total-prompts">263</span> prompts
+            </div>
+        </div>
+
+        <!-- Category Tags -->
+        <div class="mb-8">
+            <div class="flex flex-wrap gap-3 justify-start">
+                <button class="category-tag active px-4 py-2 rounded-full text-sm font-medium bg-primary text-white" data-category="all">
+                    全部
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="stock">
+                    个股分析
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="industry">
+                    行业研究
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="market">
+                    市场分析
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="valuation">
+                    估值分析
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="strategy">
+                    投资策略
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="risk">
+                    风险评估
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="macro">
+                    宏观经济
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="technical">
+                    技术分析
+                </button>
+                <button class="category-tag px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-primary hover:text-white" data-category="portfolio">
+                    组合管理
+                </button>
+            </div>
+        </div>
+
+        <!-- Our Favorites Section -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                Our favorites 
+                <span class="ml-2 text-red-500">❤️</span>
+            </h2>
+        </div>
+
+        <!-- Prompts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="prompts-container">
+            
+            <!-- Stock Analysis Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="stock">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-blue-600">IT</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">个股基本面分析</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 深度分析单只股票的财务数据、业务模式、竞争优势等基本面信息，生成专业投资建议。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+            <!-- Technical Analysis Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="technical">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-purple-600">语言</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">技术面分析</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 基于技术指标、图表形态、价格趋势等技术分析要素，评估股票买卖时机和价格走势。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+            <!-- Industry Research Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="industry">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-green-600">写作辅助</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">行业发展分析</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 全面分析特定行业的发展趋势、政策影响、竞争格局等，识别投资机会和风险。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+            <!-- Market Analysis Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="market">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-yellow-600">IT</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">市场趋势分析</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 分析大盘走势、资金流向、市场情绪等宏观因素，制定科学的投资策略和仓位配置。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+            <!-- Valuation Analysis Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="valuation">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-red-600">估值</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">估值分析模型</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 运用DCF、PE、PB等估值方法，评估股票的内在价值和投资安全边际。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+            <!-- Risk Assessment Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="risk">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-orange-600">风险</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">投资风险评估</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 识别和量化投资组合中的各类风险，制定相应的风险控制和对冲策略。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+            <!-- Portfolio Management Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="portfolio">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-indigo-600">组合</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">投资组合优化</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 基于现代投资组合理论，优化资产配置，平衡收益与风险，提升投资效率。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+            <!-- Macro Economic Card -->
+            <div class="prompt-card bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300" data-category="macro">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                            <span class="text-xs font-medium text-teal-600">宏观</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 text-sm">宏观经济分析</h3>
+                        </div>
+                    </div>
+                    <i class="heart-icon fas fa-heart text-gray-300 text-sm"></i>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                    👉 分析宏观经济指标、货币政策、财政政策对金融市场和投资策略的影响。
+                </p>
+                
+                <div class="flex items-center justify-between">
+                    <button class="copy-btn text-xs">复制</button>
+                    <button class="use-btn text-xs">使用</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- AI Models Support -->
+        <section class="py-16 bg-gradient-to-br from-primary to-secondary">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">支持所有主流AI模型</h2>
+                <p class="text-lg opacity-90 mb-12 max-w-2xl mx-auto">
+                    所有模板都已优化适配，复制后即可在各种AI模型中使用
+                </p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                    <div class="glass-card rounded-xl p-4 hover:bg-white/20 transition-all duration-300">
+                        <div class="text-3xl mb-2">🧠</div>
+                        <h3 class="font-bold">DeepSeek</h3>
+                        <p class="text-xs opacity-80">国产AI新星</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 hover:bg-white/20 transition-all duration-300">
+                        <div class="text-3xl mb-2">💭</div>
+                        <h3 class="font-bold">ChatGPT</h3>
+                        <p class="text-xs opacity-80">OpenAI</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 hover:bg-white/20 transition-all duration-300">
+                        <div class="text-3xl mb-2">🤖</div>
+                        <h3 class="font-bold">Claude</h3>
+                        <p class="text-xs opacity-80">Anthropic</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 hover:bg-white/20 transition-all duration-300">
+                        <div class="text-3xl mb-2">✨</div>
+                        <h3 class="font-bold">通义千问</h3>
+                        <p class="text-xs opacity-80">阿里云</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 hover:bg-white/20 transition-all duration-300">
+                        <div class="text-3xl mb-2">🔥</div>
+                        <h3 class="font-bold">文心一言</h3>
+                        <p class="text-xs opacity-80">百度</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+            <button class="px-8 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                Load more prompts
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400 text-sm">
+                © 2024 AI投资提示词大全 | Made with ❤️ for 投资者
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <i class="fas fa-check mr-2"></i>
+        模板已复制到剪贴板！
+    </div>
+
+    <script>
+        // Templates data
+        const prompts = [
+            {
+                id: 1,
+                title: "个股基本面分析",
+                description: "深度分析单只股票的财务数据、业务模式、竞争优势等基本面信息，生成专业投资建议。",
+                category: "stock",
+                prompt: `请作为专业股票分析师，对股票"[股票代码/名称]"进行基本面分析：
+
+1. **公司基本情况**
+   - 主营业务和商业模式
+   - 行业地位和市场份额
+   - 核心竞争优势
+
+2. **财务数据分析**
+   - 营收增长趋势
+   - 盈利能力指标(净利率、ROE、ROA)
+   - 现金流状况
+   - 资产负债结构
+
+3. **投资评估**
+   - 估值水平(PE、PB、PS)
+   - 与同行业对比
+   - 投资价值判断`,
+                tags: ["个股分析", "基本面", "财务分析"]
+            },
+            {
+                id: 2,
+                title: "技术面分析",
+                description: "基于技术指标、图表形态、价格趋势等技术分析要素，评估股票买卖时机和价格走势。",
+                category: "technical",
+                prompt: `请作为资深技术分析师，对股票"[股票代码/名称]"进行技术面分析：
+
+1. **价格趋势分析**
+   - 当前股价趋势方向
+   - 主要支撑位和阻力位
+   - 趋势延续性判断
+
+2. **技术指标解读**
+   - 移动平均线(MA5、MA20、MA60)
+   - MACD指标分析
+   - RSI相对强弱指标
+   - 成交量配合情况
+
+3. **操作建议**
+   - 买入卖出时机
+   - 止损止盈位设定
+   - 风险控制要点`,
+                tags: ["技术分析", "趋势", "指标"]
+            }
+        ];
+
+        // State
+        let currentCategory = 'all';
+        let likedPrompts = new Set();
+        let searchQuery = '';
+
+        // DOM Elements
+        const categoryButtons = document.querySelectorAll('.category-tag');
+        const searchInput = document.getElementById('global-search');
+        const promptsContainer = document.getElementById('prompts-container');
+        const totalPromptsSpan = document.getElementById('total-prompts');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            updateTotalCount();
+        });
+
+        // Event Listeners
+        function setupEventListeners() {
+            // Category filters
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    setActiveCategory(category);
+                    filterPrompts();
+                });
+            });
+
+            // Search
+            searchInput.addEventListener('input', function() {
+                searchQuery = this.value.toLowerCase();
+                filterPrompts();
+            });
+
+            // Heart icons (like functionality)
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('heart-icon')) {
+                    const promptCard = e.target.closest('.prompt-card');
+                    const promptId = promptCard.dataset.promptId || Math.random();
+                    toggleLike(e.target, promptId);
+                }
+            });
+
+            // Copy buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('copy-btn')) {
+                    const promptCard = e.target.closest('.prompt-card');
+                    const title = promptCard.querySelector('h3').textContent;
+                    copyPrompt(title);
+                }
+            });
+
+            // Use buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('use-btn')) {
+                    const promptCard = e.target.closest('.prompt-card');
+                    const title = promptCard.querySelector('h3').textContent;
+                    usePrompt(title);
+                }
+            });
+        }
+
+        // Category handling
+        function setActiveCategory(category) {
+            currentCategory = category;
+            
+            categoryButtons.forEach(btn => {
+                btn.classList.remove('active', 'bg-primary', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            
+            const activeButton = document.querySelector(`[data-category="${category}"]`);
+            if (activeButton) {
+                activeButton.classList.remove('bg-gray-100', 'text-gray-700');
+                activeButton.classList.add('active', 'bg-primary', 'text-white');
+            }
+        }
+
+        // Filter prompts
+        function filterPrompts() {
+            const promptCards = document.querySelectorAll('.prompt-card');
+            
+            promptCards.forEach(card => {
+                const category = card.dataset.category;
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                const matchesCategory = currentCategory === 'all' || category === currentCategory;
+                const matchesSearch = searchQuery === '' || 
+                    title.includes(searchQuery) || 
+                    description.includes(searchQuery);
+                
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Like functionality
+        function toggleLike(heartIcon, promptId) {
+            if (likedPrompts.has(promptId)) {
+                likedPrompts.delete(promptId);
+                heartIcon.classList.remove('liked', 'text-red-500');
+                heartIcon.classList.add('text-gray-300');
+            } else {
+                likedPrompts.add(promptId);
+                heartIcon.classList.remove('text-gray-300');
+                heartIcon.classList.add('liked', 'text-red-500');
+            }
+        }
+
+        // Copy prompt
+        function copyPrompt(title) {
+            const prompt = prompts.find(p => p.title === title);
+            if (prompt) {
+                navigator.clipboard.writeText(prompt.prompt).then(() => {
+                    showToast('提示词已复制到剪贴板！');
+                });
+            }
+        }
+
+        // Use prompt (redirect to generator)
+        function usePrompt(title) {
+            const prompt = prompts.find(p => p.title === title);
+            if (prompt) {
+                const encodedPrompt = encodeURIComponent(prompt.prompt);
+                window.open(`prompt_generator.html?prompt=${encodedPrompt}`, '_blank');
+            }
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Update total count
+        function updateTotalCount() {
+            const count = document.querySelectorAll('.prompt-card').length;
+            totalPromptsSpan.textContent = count;
+        }
+
+        // Add prompt IDs to existing cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const promptCards = document.querySelectorAll('.prompt-card');
+            promptCards.forEach((card, index) => {
+                card.dataset.promptId = index + 1;
+            });
+        });
+    </script>
+
+</body>
+</html> 

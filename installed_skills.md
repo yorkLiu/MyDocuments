@@ -76,6 +76,8 @@
 | 23 | `marketingskills`（营销技能库） | coreyhaines31/marketingskills | GitHub star 最高的营销 skill 库（33k stars）。32 个 skill 覆盖文案、SEO、转化、品牌定位全流程。纯英文界面，适合做出海/外贸内容。包含：A/B测试、广告创意、投放策略、AI SEO、数据分析、邮件营销、竞品分析、内容策略、CRO、客户调研、定价策略等。**用法**:用户提到"marketing"、"SEO"、"copywriting"、"conversion optimization"、"go-to-market"、"marketing plan"、"出海营销"、"外贸文案"时触发。按具体需求路由到对应子 skill（如`cro`、`copywriting`、`seo-audit`等）。 |
 | 24 | `awesome-gpt-image-2`（GPT-Image2 提示词库） | freestylefly/awesome-gpt-image-2 | GPT-Image2 工业级提示词引擎与模板库（7.3k stars）。470+ 爆款图逆向拆成提示词，20+ 套工业级模板，覆盖 UI 界面/信息可视化/海报排版/商品电商/品牌 logo/建筑空间/摄影写实/插画艺术/人物角色/场景叙事/历史古风等 11 类。**用法**:适合文章配图、海报、封面、创意生成场景。**注意**:本体是提示词模板库，需用可视化网站 (gpt-image2.canghe.ai) 或复制提示词；但已安装 Hermes skill `gpt-image-2-style-library` 可根据需求自动选择模板生成提示词。 |
 | 25 | `AI-Content-Studio`（AI 内容自动化工作室） | naqashafzal/AI-Content-Studio | 100% 免费开源的 AI 内容自动化工具。自动完成：脚本撰写→语音合成→视频生成→自动上传全流程。基于 Gemini 等 LLM 的自主 Agent/Python 管道，适合无人值守的短视频批量生产（YouTube/TikTok/Reels）。**用法**:这是独立 Python 项目，非 Hermes skill。需克隆后自行配置 API keys 运行 (`run.sh`)。适合做 faceless YouTube 频道、自动化 content farm。参考：https://github.com/naqashafzal/AI-Content-Studio |
+| 26 | `firecrawl`（Web 数据抓取 API） | firecrawl/firecrawl | Web 数据抓取与搜索 API（开源 Python 库）。支持 Search/Scrape/Crawl/Map/Agent 全套功能，可将任意 URL 转成干净 Markdown/JSON/截图，兼容 JS 渲染页面。支持 MCP server、Python SDK、CLI 三种接入方式。**用法**:这是 Python 库，非 Hermes skill。使用方式：① pip install firecrawl-py ② 配置 API key (firecrawl.dev 免费注册) ③ 调用 `app.scrape()`/`app.crawl()` 等方法。适合 RAG 数据清洗、竞品监控、内容聚合、agent 实时搜索场景。参考：https://github.com/firecrawl/firecrawl |
+| 27 | `crawl4ai`（LLM 友好网页爬虫） | unclecode/crawl4ai | GitHub Trending #1 的开源 LLM 友好网页爬虫（12k+ stars）。无需 API key，直接 pip install 即可使用。生成干净 Markdown，支持 RAG/微调，自动处理 JS 渲染。支持 CSS/XPath/LLM 三种提取模式、多 URL 并行爬取、代理/Session 管理。**用法**:pip install -U crawl4ai && crawl4ai-setup（初始化浏览器）→ Python 调用 `AsyncWebCrawler()`。完全开源免费，无需 API key，适合 RAG 数据管道、竞品抓取、内容聚合。参考：https://github.com/unclecode/crawl4ai |
 
 ## 新增来源链接
 
@@ -90,6 +92,8 @@
 - 营销技能库：https://github.com/coreyhaines31/marketingskills
 - GPT-Image2 提示词库：https://github.com/freestylefly/awesome-gpt-image-2
 - AI 内容自动化：https://github.com/naqashafzal/AI-Content-Studio
+- Web 数据抓取：https://github.com/firecrawl/firecrawl
+- LLM 爬虫：https://github.com/unclecode/crawl4ai
 
 ---
 
@@ -106,3 +110,46 @@
 - Horizon: https://github.com/Thysrael/Horizon
 - Agent-Reach: https://github.com/Panniantong/Agent-Reach
 - ai-website-cloner-template: https://github.com/JCodesMore/ai-website-cloner-template
+
+
+# AI 算命 （NOT INSTALL)
+- 紫微斗数 + 八字： https://github.com/DestinyLinker/MingLi-Bench
+- 紫微斗数排盘工具： https://github.com/SylarLong/iztro
+- 紫微斗数排盘工具说明：https://docs.iztro.com/learn/pattern.html
+
+
+
+# Not Install
+想用Hermes和Openclaw白嫖全网数据又不想被反爬的收藏着10个仓库就够了！
+
+1️⃣ Firecrawl：丢个URL进去，它自己把整站爬完，吐出来就是AI能直接吃的干净数据，JS渲染的页面也扛得住，14万★，进了GitHub Top 100。
+🔗 https://github.com/firecrawl/firecrawl
+
+2️⃣ Crawl4AI：把网站整成LLM能直接读的文本，不要API key不要钱。一个被16美元月费惹毛的程序员几天写出来的，7万★。
+🔗 https://github.com/unclecode/crawl4ai
+
+3️⃣ browser-use：让AI像真人一样点鼠标、登录、填表，ETH Zurich学生团队搞的，10万★。
+🔗 https://github.com/browser-use/browser-use
+
+4️⃣ Crawlee：自动换代理、重试、伪装指纹、管队列，一整套躲限制的家伙事儿全给你配齐。
+🔗 https://github.com/apify/crawlee
+
+5️⃣ Scrapy：干了十多年的老炮，几百万页面照样稳，永久免费。
+🔗 https://github.com/scrapy/scrapy
+
+6️⃣ MarkItDown：微软出的，PDF、Office、HTML、图片批量转文本，开源免费。
+🔗 https://github.com/microsoft/markitdown
+
+7️⃣ Scrapling：网站改版它自己适应，还能一直躲封禁，免费版能打付费的。
+🔗 https://github.com/D4Vinci/Scrapling
+
+8️⃣ scrcpy：用电脑远程操控安卓手机，专治那些只有App没网页的，14万★。
+🔗 https://github.com/Genymobile/scrcpy
+
+9️⃣ AutoScraper：给它一个样例，它自己学规律批量扒，不用写选择器，几行Python就跑。
+🔗 https://github.com/alirezamika/autoscraper
+
+🔟 curl-impersonate：把请求伪装成真Chrome指纹，看着就像真人在点，绕反爬不要太轻松。
+🔗 https://github.com/lwthiker/curl-impersonate
+
+工具都摆这了，能扒多少看你自己。

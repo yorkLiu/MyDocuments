@@ -78,6 +78,7 @@
 | 25 | `AI-Content-Studio`（AI 内容自动化工作室） | naqashafzal/AI-Content-Studio | 100% 免费开源的 AI 内容自动化工具。自动完成：脚本撰写→语音合成→视频生成→自动上传全流程。基于 Gemini 等 LLM 的自主 Agent/Python 管道，适合无人值守的短视频批量生产（YouTube/TikTok/Reels）。**用法**:这是独立 Python 项目，非 Hermes skill。需克隆后自行配置 API keys 运行 (`run.sh`)。适合做 faceless YouTube 频道、自动化 content farm。参考：https://github.com/naqashafzal/AI-Content-Studio |
 | 26 | `firecrawl`（Web 数据抓取 API） | firecrawl/firecrawl | Web 数据抓取与搜索 API（开源 Python 库）。支持 Search/Scrape/Crawl/Map/Agent 全套功能，可将任意 URL 转成干净 Markdown/JSON/截图，兼容 JS 渲染页面。支持 MCP server、Python SDK、CLI 三种接入方式。**用法**:这是 Python 库，非 Hermes skill。使用方式：① pip install firecrawl-py ② 配置 API key (firecrawl.dev 免费注册) ③ 调用 `app.scrape()`/`app.crawl()` 等方法。适合 RAG 数据清洗、竞品监控、内容聚合、agent 实时搜索场景。参考：https://github.com/firecrawl/firecrawl |
 | 27 | `crawl4ai`（LLM 友好网页爬虫） | unclecode/crawl4ai | GitHub Trending #1 的开源 LLM 友好网页爬虫（12k+ stars）。无需 API key，直接 pip install 即可使用。生成干净 Markdown，支持 RAG/微调，自动处理 JS 渲染。支持 CSS/XPath/LLM 三种提取模式、多 URL 并行爬取、代理/Session 管理。**用法**:pip install -U crawl4ai && crawl4ai-setup（初始化浏览器）→ Python 调用 `AsyncWebCrawler()`。完全开源免费，无需 API key，适合 RAG 数据管道、竞品抓取、内容聚合。参考：https://github.com/unclecode/crawl4ai |
+| 28 | `atutun-xhs-cover`（小红书封面提示词） | panggungunvibe/atutun-xhs-cover | 阿囤囤风格小红书封面提示词生成 skill（3:4 竖版）。真人出镜、超大浅黄(#FDFFA7)/白色中文标题、粗黑描边、人物抠图、绿色勾选清单、emoji贴纸、高对比高密度构图。8 种风格：爆款大字/巨字拆分/小白科普/教程清单/产品测评/种草推荐/贴纸拼贴/黑底工作流。**用法**:用户提到"小红书封面"、\"生成封面提示词\"、\"爆款封面\"时触发。逐步问答收集：风格→人物图→表情动作→素材图→背景色→字体→颜色→标题，最终输出可交给图片生成模型的提示词。需配合 GPT-Image-2 等使用。参考：https://github.com/panggungunvibe/atutun-xhs-cover |
 
 ## 新增来源链接
 
@@ -90,10 +91,11 @@
 - YouTube 剪辑：https://github.com/op7418/Youtube-clipper-skill
 - 网文写作：https://github.com/worldwonderer/oh-story-claudecode
 - 营销技能库：https://github.com/coreyhaines31/marketingskills
-- GPT-Image2 提示词库：https://github.com/freestylefly/awesome-gpt-image-2
+- GPT-Image2 提示词库：http://github.com/freestylefly/awesome-gpt-image-2
 - AI 内容自动化：https://github.com/naqashafzal/AI-Content-Studio
 - Web 数据抓取：https://github.com/firecrawl/firecrawl
 - LLM 爬虫：https://github.com/unclecode/crawl4ai
+- 小红书封面：https://github.com/panggungunvibe/atutun-xhs-cover
 
 ---
 

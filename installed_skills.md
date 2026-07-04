@@ -79,6 +79,7 @@
 | 26 | `firecrawl`（Web 数据抓取 API） | firecrawl/firecrawl | Web 数据抓取与搜索 API（开源 Python 库）。支持 Search/Scrape/Crawl/Map/Agent 全套功能，可将任意 URL 转成干净 Markdown/JSON/截图，兼容 JS 渲染页面。支持 MCP server、Python SDK、CLI 三种接入方式。**用法**:这是 Python 库，非 Hermes skill。使用方式：① pip install firecrawl-py ② 配置 API key (firecrawl.dev 免费注册) ③ 调用 `app.scrape()`/`app.crawl()` 等方法。适合 RAG 数据清洗、竞品监控、内容聚合、agent 实时搜索场景。参考：https://github.com/firecrawl/firecrawl |
 | 27 | `crawl4ai`（LLM 友好网页爬虫） | unclecode/crawl4ai | GitHub Trending #1 的开源 LLM 友好网页爬虫（12k+ stars）。无需 API key，直接 pip install 即可使用。生成干净 Markdown，支持 RAG/微调，自动处理 JS 渲染。支持 CSS/XPath/LLM 三种提取模式、多 URL 并行爬取、代理/Session 管理。**用法**:pip install -U crawl4ai && crawl4ai-setup（初始化浏览器）→ Python 调用 `AsyncWebCrawler()`。完全开源免费，无需 API key，适合 RAG 数据管道、竞品抓取、内容聚合。参考：https://github.com/unclecode/crawl4ai |
 | 28 | `atutun-xhs-cover`（小红书封面提示词） | panggungunvibe/atutun-xhs-cover | 阿囤囤风格小红书封面提示词生成 skill（3:4 竖版）。真人出镜、超大浅黄(#FDFFA7)/白色中文标题、粗黑描边、人物抠图、绿色勾选清单、emoji贴纸、高对比高密度构图。8 种风格：爆款大字/巨字拆分/小白科普/教程清单/产品测评/种草推荐/贴纸拼贴/黑底工作流。**用法**:用户提到"小红书封面"、\"生成封面提示词\"、\"爆款封面\"时触发。逐步问答收集：风格→人物图→表情动作→素材图→背景色→字体→颜色→标题，最终输出可交给图片生成模型的提示词。需配合 GPT-Image-2 等使用。参考：https://github.com/panggungunvibe/atutun-xhs-cover |
+| 29 | `stock-sdk`（JS 股票行情 SDK） | chengzuopeng/stock-sdk | 纯 JavaScript 股票行情 SDK（零依赖，Browser + Node.js）。无需 API key，直接获取 A股/港股/美股/基金实时行情与 K 线数据。**用法**: `npm install stock-sdk` → `new StockSDK()` → `sdk.quotes.cnSimple(['sh600519'])`. CLI: `npx stock-sdk quote 600519`. 内置 MCP server: `npx stock-sdk mcp`. 支持技术指标/选股/回测。参考：https://github.com/chengzuopeng/stock-sdk |
 
 ## 新增来源链接
 
@@ -96,6 +97,7 @@
 - Web 数据抓取：https://github.com/firecrawl/firecrawl
 - LLM 爬虫：https://github.com/unclecode/crawl4ai
 - 小红书封面：https://github.com/panggungunvibe/atutun-xhs-cover
+- JS 股票 SDK：https://github.com/chengzuopeng/stock-sdk
 
 ---
 
@@ -155,3 +157,19 @@
 🔗 https://github.com/lwthiker/curl-impersonate
 
 工具都摆这了，能扒多少看你自己。
+
+---
+
+## 新增 Skills（追加）
+
+### 2026-07-02: guizang-social-card-skill (本地已安装)
+
+| # | Skill 名称 | 来源 | 说明 |
+|---|-----------|------|------|
+| 11 | `guizang-social-card-skill` | guizang-ppt-skill | 生成小红书/公众号封面图，Magazine Editorial 风格，支持 3:4 竖版、1:1 方版、21:9 横版，含 6 套调色板、15 种布局模板、WebGL 氛围背景 |
+
+- 来源: https://github.com/guizang/ppt-skill/tree/main/skills
+- 用法: 加载 skill `guizang-social-card-skill`，复制模板到工作目录，替换主题和海报内容，用 Playwright 渲染 PNG
+- 模板: `assets/template-editorial-card.html`，WebGL: `assets/magazine-bg-webgl.js`
+- 布局模板: M01-M15 (封面/清单/账本/对比/引用等)
+- 调色板: ink-classic / indigo-porcelain / forest-ink / kraft-paper / dune / midnight-ink

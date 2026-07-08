@@ -79,8 +79,12 @@
 | 26 | `firecrawl`（Web 数据抓取 API） | firecrawl/firecrawl | Web 数据抓取与搜索 API（开源 Python 库）。支持 Search/Scrape/Crawl/Map/Agent 全套功能，可将任意 URL 转成干净 Markdown/JSON/截图，兼容 JS 渲染页面。支持 MCP server、Python SDK、CLI 三种接入方式。**用法**:这是 Python 库，非 Hermes skill。使用方式：① pip install firecrawl-py ② 配置 API key (firecrawl.dev 免费注册) ③ 调用 `app.scrape()`/`app.crawl()` 等方法。适合 RAG 数据清洗、竞品监控、内容聚合、agent 实时搜索场景。参考：https://github.com/firecrawl/firecrawl |
 | 27 | `crawl4ai`（LLM 友好网页爬虫） | unclecode/crawl4ai | GitHub Trending #1 的开源 LLM 友好网页爬虫（12k+ stars）。无需 API key，直接 pip install 即可使用。生成干净 Markdown，支持 RAG/微调，自动处理 JS 渲染。支持 CSS/XPath/LLM 三种提取模式、多 URL 并行爬取、代理/Session 管理。**用法**:pip install -U crawl4ai && crawl4ai-setup（初始化浏览器）→ Python 调用 `AsyncWebCrawler()`。完全开源免费，无需 API key，适合 RAG 数据管道、竞品抓取、内容聚合。参考：https://github.com/unclecode/crawl4ai |
 | 28 | `atutun-xhs-cover`（小红书封面提示词） | panggungunvibe/atutun-xhs-cover | 阿囤囤风格小红书封面提示词生成 skill（3:4 竖版）。真人出镜、超大浅黄(#FDFFA7)/白色中文标题、粗黑描边、人物抠图、绿色勾选清单、emoji贴纸、高对比高密度构图。8 种风格：爆款大字/巨字拆分/小白科普/教程清单/产品测评/种草推荐/贴纸拼贴/黑底工作流。**用法**:用户提到"小红书封面"、\"生成封面提示词\"、\"爆款封面\"时触发。逐步问答收集：风格→人物图→表情动作→素材图→背景色→字体→颜色→标题，最终输出可交给图片生成模型的提示词。需配合 GPT-Image-2 等使用。参考：https://github.com/panggungunvibe/atutun-xhs-cover |
-|| 29 | `stock-sdk`（JS 股票行情 SDK） | chengzuopeng/stock-sdk | 纯 JavaScript 股票行情 SDK（零依赖，Browser + Node.js）。无需 API key，直接获取 A股/港股/美股/基金实时行情与 K 线数据。**用法**: `npm install stock-sdk` → `new StockSDK()` → `sdk.quotes.cnSimple(['sh600519'])`. CLI: `npx stock-sdk quote 600519`. 内置 MCP server: `npx stock-sdk mcp`. 支持技术指标/选股/回测。参考：https://github.com/chengzuopeng/stock-sdk |
-|| 30 | `huashu-nuwa`（女娲·造人术） | alchaincyf/nuwa-skill | 输入人名/主题/模糊需求，自动深度调研→思维框架提炼→生成可运行的人物 Skill。捕捉 HOW they think，不是 WHAT they said。**用法**: 安装后直接说「蒸馏一个XX」让 AI 自动蒸馏新人，或直接使用已蒸馏好的 14 个牛人视角技能（乔布斯/马斯克/芒格/费曼/纳瓦尔/塔勒布/PG/特朗普/MrBeast/Ilya/Karpathy/张一鸣/张雪峰/孙宇晨）。参考：https://github.com/alchaincyf/nuwa-skill |
+||| 29 | `stock-sdk`（JS 股票行情 SDK） | chengzuopeng/stock-sdk | 纯 JavaScript 股票行情 SDK（零依赖，Browser + Node.js）。无需 API key，直接获取 A股/港股/美股/基金实时行情与 K 线数据。**用法**: `npm install stock-sdk` → `new StockSDK()` → `sdk.quotes.cnSimple(['sh600519'])`. CLI: `npx stock-sdk quote 600519`. 内置 MCP server: `npx stock-sdk mcp`. 支持技术指标/选股/回测。参考：https://github.com/chengzuopeng/stock-sdk |
+||| 30 | `huashu-nuwa`（女娲·造人术） | alchaincyf/nuwa-skill | 输入人名/主题/模糊需求，自动深度调研→思维框架提炼→生成可运行的人物 Skill。捕捉 HOW they think，不是 WHAT they said。**用法**: 安装后直接说「蒸馏一个XX」让 AI 自动蒸馏新人，或直接使用已蒸馏好的 14 个牛人视角技能（乔布斯/马斯克/芒格/费曼/纳瓦尔/塔勒布/PG/特朗普/MrBeast/Ilya/Karpathy/张一鸣/张雪峰/孙宇晨）。参考：https://github.com/alchaincyf/nuwa-skill |
+||| 31 | `mistery-perspective`（Mistery 视角） | 源：自建（书籍+推文蒸馏） | 基于 710页《Mistery股市理论》+ 183条推文（7天）蒸馏的炒股思维框架 Skill。提炼 8 个核心心智模型：增量资金思维 / 结构性行情 / 远离大多数人 / 筹码优先于技术面 / 等待主升浪 / 认知深度决定持仓 / 情绪钟摆 / 主力行为学 + 10条决策启发式 + 完整表达DNA。**触发方式**:<br>• 显式：「用Mistery视角分析」「Mistery会怎么看」「切换到Mistery模式」「mistery perspective」<br>• 隐式：提及「增量资金」「筹码结构」「情绪钟摆」「主升浪」「认知深度」等Mistery自创概念<br>• 英文：「how would Mistery think」「in Mistery's view」<br>**使用方法**: 直接问投资决策/市场分析问题，Skill会以Mistery身份回答（条件化表达/不给代码/逻辑优先）。文件位置：`/data/hermes/workspace/.claude/skills/mistery-perspective/SKILL.md` |
+||| 32 | `book-to-skill`（书籍→Skill） | virgiliojr94/book-to-skill | 把技术书籍/PDF/EPUB/DOCX 转成 AI Agent Skill 的工具。24-51倍 fewer tokens 比直接塞进 context（约 $1/本书）。生成 SKILL.md + 每章 Markdown + 术语表 + 模式库 + 速查表。**用法**: `npx skills add virgiliojr94/book-to-skill` → `/book-to-skill ./my-book.pdf my-slug`。支持 Claude Code / Codex / Cursor / OpenClaw / Hermes 等 50+ runtime。适用：技术书籍/内部文档/研究论文。参考：https://github.com/virgiliojr94/book-to-skill |
+||| 33 | `seedance-2.0`（导演 Skill OS） | Emily2040/seedance-2.0 | AI 视频生成导演技能包，35 种内容类型（产品/恐怖/音乐MV/动漫/动作/纪录片/时尚/Sci-Fi），支持中/日/韩/俄/西六语言，对接 Seedance/Dreamina/Jimeng/Doubao/Runway/Volcengine 等平台。核心原则："导演场景，不是装饰画面"，提供 28 个子 skill。**用法**: clone 到 `~/.hermes/skills/seedance-2.0/` 即可在 Hermes/Claude Code/Codex 中使用。参考：https://github.com/Emily2040/seedance-2.0 |
+||| 34 | `video-use`（AI 视频剪辑） | browser-use/video-use | 用 AI Agent 剪辑视频的工具，丢原始素材进文件夹，聊天得到 `final.mp4`。功能：自动删除 filler words / 音频淡入淡出 / 自动调色 / 烧录字幕 / 自我评估。原理：LLM 通过 ElevenLabs Scribe 读取词级时间戳转录（~12KB）+ 按需可视化时间线，不逐帧处理。**用法**: `git clone` 后配置 `ELEVENLABS_API_KEY`，依赖 ffmpeg（必须）。**注意**：这是视频剪辑工具，不是生成工具（生成用 seedance）。参考：https://github.com/browser-use/video-use |
 
 ## 新增来源链接
 
@@ -99,7 +103,11 @@
 - LLM 爬虫：https://github.com/unclecode/crawl4ai
 - 小红书封面：https://github.com/panggungunvibe/atutun-xhs-cover
 - JS 股票 SDK：https://github.com/chengzuopeng/stock-sdk
-- nuwa-skill（女娲）：https://github.com/alchaincyf/nuwa-skill （14 个预蒸馏人物 skills 已安装：steve-jobs/munger/feynman/naval/elon-musk/taleb/paul-graham/trump/mrbeast/ilya/karpathy/zhang-yiming/zhangxuefeng/sun-yuchen + x-mastery-mentor）
+- nuwa-skill（女娲）：https://github.com/alchaincyf/nuwa-skill （14 个预蒸馏人物 skills）
+- Mistery 视角：自建（书籍+推文蒸馏）→ `/data/hermes/workspace/.claude/skills/mistery-perspective/SKILL.md`
+- 书籍→Skill：https://github.com/virgiliojr94/book-to-skill
+- Seedance 2.0 导演 OS：https://github.com/Emily2040/seedance-2.0
+- Video-Use AI 剪辑：https://github.com/browser-use/video-use
 
 ---
 

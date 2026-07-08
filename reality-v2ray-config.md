@@ -132,8 +132,19 @@ bash <(curl -sL https://raw.githubusercontent.com/aleskxyz/reality-ezpz/master/r
 
 操作完成后建议：
 
-重启容器：Bashdocker restart reality-ezpz-engine-1
+重启容器：Bash docker restart reality-ezpz-engine-1
 把新的 vless:// 完整链接复制到 v2rayNG 中测试。
 注意新配置的 SNI、Public Key、Short ID、Flow 等参数要完整复制。
+
+
+# 问题排查
+```bash
+sudo ntpdate -b pool.ntp.org   # 强制同步
+```
+
+```bash
+timedatectl status 
+看 System clock synchronized 是否变 yes
+```
 
 备份好此配置文件，节点信息请妥善保存。

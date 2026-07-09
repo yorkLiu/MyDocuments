@@ -86,6 +86,16 @@
 | 33 | `seedance-2.0`（导演 Skill OS） | Emily2040/seedance-2.0 | AI 视频生成导演技能包，35 种内容类型（产品/恐怖/音乐MV/动漫/动作/纪录片/时尚/Sci-Fi），支持中/日/韩/俄/西六语言，对接 Seedance/Dreamina/Jimeng/Doubao/Runway/Volcengine 等平台。核心原则："导演场景，不是装饰画面"，提供 28 个子 skill。**用法**: clone 到 `~/.hermes/skills/seedance-2.0/` 即可在 Hermes/Claude Code/Codex 中使用。参考：https://github.com/Emily2040/seedance-2.0 |
 | 34 | `video-use`（AI 视频剪辑） | browser-use/video-use | 用 AI Agent 剪辑视频的工具，丢原始素材进文件夹，聊天得到 `final.mp4`。功能：自动删除 filler words / 音频淡入淡出 / 自动调色 / 烧录字幕 / 自我评估。原理：LLM 通过 ElevenLabs Scribe 读取词级时间戳转录（~12KB）+ 按需可视化时间线，不逐帧处理。**用法**: `git clone` 后配置 `ELEVENLABS_API_KEY`，依赖 ffmpeg（必须）。**注意**：这是视频剪辑工具，不是生成工具（生成用 seedance）。参考：https://github.com/browser-use/video-use |
 
+| 35 | `wechat-account-launch-expert`（公众号起号） | chenjin-cmd/agent-skills-launch-pack | 微信公众号起号专家 Skill，覆盖账号定位、主页框架、对标拆解、选题库、文章简报、发布节奏、流量主实验和周复盘。**触发**: 用户询问公众号起号、新号冷启动、流量主、公众号定位、对标账号、爆款标题、30天起号计划或公众号内容策略时。**使用方法**: 直接说「帮我规划公众号起号」「分析下我的公众号定位」「30天起号计划」。**安装**: `./install.sh wechat-account-launch-expert` 或直接 clone skills 目录。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
+
+| 36 | `xiaohongshu-account-launch-expert`（小红书起号） | chenjin-cmd/agent-skills-launch-pack | 小红书起号专家 Skill，覆盖账号定位、笔记简报、内容日历、转化路径、主页诊断、选题库、对标分析和 30/60/90 天起号计划。**触发**: 用户需要创建/诊断/优化小红书账号，包括起号、涨粉、引流、账号定位、个人IP、选题库、笔记简报、内容日历、主页诊断、转化路径时。**使用方法**: 直接说「帮我做小红书起号规划」「分析账号定位」「30天起号计划」。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
+
+| 37 | `douyin-account-launch-expert`（抖音起号） | chenjin-cmd/agent-skills-launch-pack | 抖音新号起号与涨粉 Skill，覆盖账号定位、观看理由、标签校准、搜索流量预埋、3秒钩子、人格化表达、评论互动、私域冷启动、合集运营、9条视频小样本实验、数据复盘和30天执行计划。**触发**: 用户询问抖音起号、涨粉、新号冷启动、账号定位、低播放量、对标账号、短视频选题、完播率、评论互动、合集策略、私域启动或抖音内容复盘时。**使用方法**: 直接说「帮我规划抖音起号」「分析账号问题」「新号冷启动计划」。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
+
+| 38 | `channels-account-launch-expert`（视频号起号） | chenjin-cmd/agent-skills-launch-pack | 微信视频号起号专家 Skill，覆盖账号定位、人设打造、选题策划、视频脚本、私域承接、9条视频小样本实验、数据复盘和30天执行计划。**触发**: 用户询问视频号起号、视频号涨粉、新号冷启动、账号定位、低播放量、对标账号、视频号脚本、完播率、评论互动或视频号内容复盘时。**使用方法**: 直接说「帮我规划视频号起号」「分析视频号数据」「30天起号计划」。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
+
+| 39 | `x-twitter-cold-start-expert`（X起号） | chenjin-cmd/agent-skills-launch-pack | 中文 X/Twitter 冷启动专家 Skill，覆盖账号定位、内容主题、回复区曝光、主贴/Thread 转化、7天执行计划、周复盘表和增长诊断。**触发**: 用户想做X账号冷启动、推特起号、500粉以内增长、个人IP定位、内容矩阵、互动回复策略、将真实工作流转成内容、复盘X数据，或要求基于账号/选题/截图制定可执行起号方案时。**使用方法**: 直接说「帮我做X起号规划」「分析推特账号」「7天冷启动计划」。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
+
 ## 新增来源链接
 
 - 归藏 PPT: https://github.com/op7418/guizang-ppt-skill
@@ -108,6 +118,7 @@
 - 书籍→Skill：https://github.com/virgiliojr94/book-to-skill
 - Seedance 2.0 导演 OS：https://github.com/Emily2040/seedance-2.0
 - Video-Use AI 剪辑：https://github.com/browser-use/video-use
+- 起号专家套装（5平台）：https://github.com/chenjin-cmd/agent-skills-launch-pack_
 
 ---
 

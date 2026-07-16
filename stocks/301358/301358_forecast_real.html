@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>301358 未来 5 天预测</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; margin-bottom: 8px; }
+        .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 24px; }
+        #main { width: 100%; height: 600px; }
+        .summary { margin-top: 20px; padding: 16px; background: #fafafa; border-radius: 4px; border-left: 4px solid #1890ff; }
+        .disclaimer { margin-top: 16px; padding: 12px; background: #fff7e6; border: 1px solid #ffe58f; border-radius: 4px; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>股票 301358 未来 5 天走势预测</h1>
+        <div class="subtitle">生成时间：2026-06-11 02:32 | 方法：统计模型 | 红涨绿跌</div>
+        <div id="main"></div>
+        <div class="summary">
+            <strong>📊 预测概要：</strong> 当前价 55.77 元 → 5 天后预测 55.77 元 
+            (-0.0%)
+        </div>
+        <div class="disclaimer">⚠️ 免责声明：本预测基于历史数据统计/模型分析，不构成投资建议。市场有风险，投资需谨慎。</div>
+    </div>
+    <script>
+        const chart = echarts.init(document.getElementById('main'));
+        const histData = [["2026-05-21", 94.8, 91.42, 91.3, 96.98], ["2026-05-22", 91.1, 91.18, 89.53, 92.45], ["2026-05-25", 90.9, 87.8, 84.7, 91.18], ["2026-05-26", 87.43, 87.46, 85.51, 88.92], ["2026-05-27", 88.25, 87.79, 86.83, 90.99], ["2026-05-28", 88.51, 87.05, 85.7, 90.8], ["2026-05-29", 87.05, 88.41, 84.36, 90.25], ["2026-06-01", 87.0, 85.07, 84.96, 88.84], ["2026-06-02", 86.0, 83.98, 81.56, 86.07], ["2026-06-03", 83.01, 82.72, 81.6, 83.85], ["2026-06-04", 74.45, 74.35, 74.0, 76.49], ["2026-06-05", 74.35, 72.32, 71.11, 75.09], ["2026-06-08", 71.55, 68.65, 67.37, 72.94], ["2026-06-09", 69.3, 69.64, 66.87, 70.28], ["2026-06-10", 69.3, 68.05, 67.31, 70.98]];
+        const fcData = [["2026-06-11", 68.05, 64.15, 63.19, 69.07], ["2026-06-12", 64.15, 60.48, 59.58, 65.11], ["2026-06-15", 60.48, 60.14, 59.23, 61.39], ["2026-06-15", 60.14, 54.77, 53.95, 61.04], ["2026-06-15", 54.77, 55.77, 53.95, 56.61]];
+        
+        // 计算分区点（历史 vs 预测）
+        const splitIndex = histData.length;
+        const allX = [...histData.map(d => d[0]), ...fcData.map(d => d[0])];
+        const allHist = histData.map(d => [d[1], d[2], d[3], d[4]]);
+        const allFc = fcData.map(d => [d[1], d[2], d[3], d[4]]);
+        
+        const option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'cross' },
+                backgroundColor: '#fff',
+                borderColor: '#ccc',
+                textStyle: { color: '#333' },
+                formatter: function(params) {
+                    const d = params[0].data;
+                    const isFc = params[0].seriesName === '预测';
+                    const change = ((d[1] - d[0]) / d[0] * 100).toFixed(2);
+                    const color = d[1] >= d[0] ? '#d32f2f' : '#388e3c';
+                    return `<b>${d[0]} ${isFc ? '（预测）' : ''}</b><br/>
+                            开：${d[0]} | 收：${d[1]} <span style="color:${color}">${d[1]>=d[0]?'▲':'▼'} {change}%</span><br/>
+                            高：${d[2]} | 低：${d[3]}`;
+                }
+            },
+            legend: { data: ['历史', '预测'], top: 10 },
+            grid: { left: '5%', right: '5%', bottom: '10%', top: '15%' },
+            xAxis: {
+                type: 'category',
+                data: allX,
+                axisTick: {show: false},
+                axisLine: {lineStyle: {color: '#999'}}
+            },
+            yAxis: {
+                type: 'value',
+                name: '价格',
+                axisLine: {lineStyle: {color: '#999'}},
+                splitLine: {lineStyle: {color: '#eee'}}
+            },
+            dataZoom: [{ type: 'inside' }, { type: 'slider' }],
+            series: [
+                {
+                    name: '历史',
+                    type: 'candlestick',
+                    data: allHist,
+                    itemStyle: {
+                        color: '#d32f2f', color0: '#388e3c',
+                        borderColor: '#d32f2f', borderColor0: '#388e3c'
+                    }
+                },
+                {
+                    name: '预测',
+                    type: 'candlestick',
+                    data: allFc,
+                    itemStyle: {
+                        color: '#ff6b6b', color0: '#4ecdc4',
+                        borderColor: '#ff6b6b', borderColor0: '#4ecdc4'
+                    }
+                }
+            ],
+            backgroundColor: {
+                type: 'linear', x: 0, y: 0, x2: 1, y2: 0,
+                colorStops: [
+                    { offset: 0, color: '#fff' },
+                    { offset: ${splitIndex/allX.length}, color: '#fff' },
+                    { offset: ${splitIndex/allX.length}, color: '#fffde7' },
+                    { offset: 1, color: '#fffde7' }
+                ]
+            }
+        };
+        chart.setOption(option);
+        window.onresize = () => chart.resize();
+    </script>
+</body>
+</html>

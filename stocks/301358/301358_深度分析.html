@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>301358 湖南裕能 | 深度分析报告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0d1117; color: #e6edf3; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #30363d; }
+.ticker-badge { background: linear-gradient(135deg, #58a6ff, #1f6feb); color: #fff; font-size: 22px; font-weight: 700; padding: 6px 16px; border-radius: 6px; }
+.stock-name { font-size: 24px; font-weight: 600; color: #f0f6fc; }
+.exchange-tag { background: #21262d; color: #8b949e; font-size: 12px; padding: 2px 8px; border-radius: 4px; }
+.section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+.section-title { font-size: 16px; font-weight: 600; color: #f0f6fc; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #30363d; display: flex; align-items: center; gap: 8px; }
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.tag-red { background: rgba(255,70,70,0.15); color: #ff6b6b; }
+.tag-green { background: rgba(63,185,80,0.15); color: #3fb950; }
+.tag-yellow { background: rgba(234,179,8,0.15); color: #eab308; }
+.tag-blue { background: rgba(88,166,255,0.15); color: #58a6ff; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #21262d; }
+.stat-label { color: #8b949e; font-size: 14px; }
+.stat-value { font-size: 14px; font-weight: 600; color: #f0f6fc; }
+.stat-value.up { color: #f85149; }
+.stat-value.down { color: #3fb950; }
+.price-hero { background: linear-gradient(135deg, #161b22, #1f2937); border: 1px solid #30363d; border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 16px; }
+.current-price { font-size: 48px; font-weight: 700; color: #f0f6fc; }
+.price-change { font-size: 18px; margin-top: 8px; }
+.up { color: #f85149; }
+.down { color: #3fb950; }
+.phase-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.phase-table th, .phase-table td { padding: 10px 12px; text-align: center; border: 1px solid #30363d; font-size: 13px; }
+.phase-table th { background: #21262d; color: #8b949e; font-weight: 500; }
+.phase-table td { color: #e6edf3; }
+.phase-table .highlight { background: rgba(88,166,255,0.08); }
+.wave-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.wave-table th, .wave-table td { padding: 8px 10px; text-align: center; border: 1px solid #30363d; font-size: 12px; }
+.wave-table th { background: #21262d; color: #8b949e; }
+.wave-table td { color: #c9d1d9; }
+.wave-up { color: #f85149; font-weight: 600; }
+.wave-down { color: #3fb950; font-weight: 600; }
+.verdict-card { background: #1c2128; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin-top: 12px; }
+.verdict-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.verdict-content { font-size: 13px; color: #8b949e; line-height: 1.7; }
+.prediction-box { background: #fffef0; border: 1px solid #eab308; border-radius: 8px; padding: 16px; margin-top: 12px; }
+.prediction-title { font-size: 14px; font-weight: 700; color: #92400e; margin-bottom: 12px; }
+.pred-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(234,179,8,0.06); border-radius: 6px; margin-bottom: 8px; }
+.pred-day { font-size: 13px; font-weight: 600; color: #92400e; }
+.pred-val { font-size: 14px; font-weight: 700; }
+.pred-up { color: #dc2626; }
+.pred-down { color: #16a34a; }
+.pred-note { font-size: 12px; color: #a16207; margin-top: 8px; }
+.summary-box { background: #161b22; border: 2px solid #f85149; border-radius: 8px; padding: 16px; margin-top: 12px; }
+.summary-title { font-size: 14px; font-weight: 700; color: #f85149; margin-bottom: 8px; }
+.indicator-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.indicator-card { background: #1c2128; border-radius: 6px; padding: 12px; text-align: center; }
+.indicator-label { font-size: 11px; color: #8b949e; margin-bottom: 4px; }
+.indicator-value { font-size: 16px; font-weight: 700; }
+.indicator-value.bad { color: #f85149; }
+.indicator-value.warning { color: #eab308; }
+.indicator-value.good { color: #3fb950; }
+.footer { text-align: center; color: #484f58; font-size: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #30363d; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <span class="ticker-badge">301358</span>
+    <div>
+      <div class="stock-name">湖南裕能新能源电池材料股份有限公司</div>
+      <div style="margin-top:4px">
+        <span class="tag tag-blue">创业板</span>
+        <span class="tag tag-yellow">磷酸铁锂正极材料</span>
+        <span class="exchange-tag">深交所 SZSE</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="price-hero">
+    <div class="current-price">72.66 元</div>
+    <div class="price-change up">▼ -33.6% (从历史高点109.45元回落)</div>
+    <div style="margin-top:8px; color:#8b949e; font-size:13px">数据截至 2026-06-12 | 市值 552.8亿元</div>
+  </div>
+
+  <!-- 一、主力动向与老鼠仓分析 -->
+  <div class="section">
+    <div class="section-title">一、主力动向与老鼠仓分析 🔍</div>
+    <div class="verdict-card">
+      <div class="verdict-title">⚠️ 老鼠仓风险评估</div>
+      <div class="verdict-content">
+        <p><strong>结论：存在较明显的阶段性主力运作痕迹，但不符合典型"老鼠仓"定义。</strong></p>
+        <br>
+        <p><strong>支撑依据：</strong></p>
+        <p>① <strong>Phase 2成交量异常：</strong>2026年3-4月区间成交量达到流通盘的159%，换手率极高，暗示有主力在该区间大量吸筹；</p>
+        <p>② <strong>Phase 3高位派发：</strong>2026年5月VWAP高达95.53元，高于当前价格31%，恰是5月6日创历史高点109.45元的时间窗口——典型的"拉高出货"模式；</p>
+        <p>③ <strong>定增配合：</strong>2026年1月公司完成向特定对象发行股票注册（证监许可〔2026〕81号），定增价格为<strong>77.18元</strong>，锁定期6个月——这意味着主力筹码成本极低，安全垫充足；</p>
+        <p>④ <strong>机构评级：</strong>90天内9家机构给出买入/增持评级，目标均价141.58元，距当前价有95%上涨空间——主力撤退有"故事"支撑。</p>
+        <br>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="indicator-grid">
+        <div class="indicator-card">
+          <div class="indicator-label">Phase 2吸筹成本</div>
+          <div class="indicator-value" style="color:#eab308">79.92元</div>
+        </div>
+        <div class="indicator-card">
+          <div class="indicator-label">Phase 3派发区间</div>
+          <div class="indicator-value" style="color:#f85149">95.53元</div>
+        </div>
+        <div class="indicator-card">
+          <div class="indicator-label">定增价(2026.1)</div>
+          <div class="indicator-value" style="color:#58a6ff">77.18元</div>
+        </div>
+        <div class="indicator-card">
+          <div class="indicator-label">主力浮亏状态</div>
+          <div class="indicator-value" style="color:#3fb950">-5.7%</div>
+        </div>
+        <div class="indicator-card">
+          <div class="indicator-label">RSI(14日)</div>
+          <div class="indicator-value bad">24.8 超卖</div>
+        </div>
+        <div class="indicator-card">
+          <div class="indicator-label">BOLL %B</div>
+          <div class="indicator-value good">0.24 低位</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdict-card" style="margin-top:16px; border-left: 3px solid #f85149;">
+      <div class="verdict-title">🧠 主力意图研判</div>
+      <div class="verdict-content">
+        <p><strong>Phase 1（2025年12月-2026年2月）：</strong>价格从60元附近启动，主力开始在65元左右区间悄悄吸筹，成交量温和放大。这期间大盘整体平稳，公司并无重大利好，属于"逆势建仓"。</p>
+        <br>
+        <p><strong>Phase 2（2026年3-4月）：</strong>随着磷酸铁锂行业景气度回升预期增强，主力加速拉升建仓，成本约79.92元。4月28日-30日出现历史天量（超6000万股），是典型的"对倒造量"信号——一边拉升一边用大单对敲维持流动性，方便后续出货。</p>
+        <br>
+        <p><strong>Phase 3（2026年5月）：</strong>股价最高触及109.45元后迅速回落，高位放量大阴线（5月8日跌幅-8.3%，成交量5241万股）。这是<strong>主力开始大规模派发的明确信号</strong>。5月25日主力净卖出5.61亿元，5月8日净卖出4.49亿元，佐证了这一判断。</p>
+        <br>
+        <p><strong>当前（2026年6月）：</strong>股价从高点回落33.6%至72.66元，已跌破Phase 2主力成本区（79.92元），MACD零轴下方开口继续放大，但RSI已跌至24.8极度超卖区间。</p>
+        <br>
+        <p><strong>主力当前状态：</strong>Phase 2主力筹码（79.92元）目前处于<strong>约9%的浮亏状态</strong>，但定增参与方成本为77.18元，与当前价格接近。这意味着一旦跌破77元，可能触发定增方的护盘意愿，或有潜在支撑。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 二、主力成本分析 -->
+  <div class="section">
+    <div class="section-title">二、主力成本区间测算 📊</div>
+
+    <table class="phase-table">
+      <tr>
+        <th>阶段</th>
+        <th>时间区间</th>
+        <th>VWAP均价</th>
+        <th>平均价格</th>
+        <th>区间成交量</th>
+        <th>占流通盘比例</th>
+        <th>主力意图</th>
+      </tr>
+      <tr class="highlight">
+        <td>Phase 1</td>
+        <td>2025年12月-2026年2月</td>
+        <td style="color:#3fb950">65.62元</td>
+        <td>65.25元</td>
+        <td>13.05亿股</td>
+        <td>172%</td>
+        <td><span class="tag tag-blue">吸筹</span></td>
+      </tr>
+      <tr>
+        <td>Phase 2</td>
+        <td>2026年3月-4月</td>
+        <td style="color:#eab308">79.92元</td>
+        <td>77.75元</td>
+        <td>12.11亿股</td>
+        <td>159%</td>
+        <td><span class="tag tag-yellow">拉升</span></td>
+      </tr>
+      <tr>
+        <td>Phase 3</td>
+        <td>2026年5月</td>
+        <td style="color:#f85149">95.53元</td>
+        <td>94.11元</td>
+        <td>5.87亿股</td>
+        <td>77%</td>
+        <td><span class="tag tag-red">派发</span></td>
+      </tr>
+      <tr class="highlight">
+        <td>当前</td>
+        <td>2026年6月12日</td>
+        <td style="color:#58a6ff">72.66元</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><span class="tag tag-yellow">回落</span></td>
+      </tr>
+    </table>
+
+    <div class="verdict-card" style="margin-top:16px; border-left: 3px solid #58a6ff;">
+      <div class="verdict-title">📐 主力成本结构图</div>
+      <div class="verdict-content">
+        <p>• <strong>Phase 1 早期建仓：</strong>约65元区间，吸筹约13亿股（约17亿资金）</p>
+        <p>• <strong>Phase 2 拉升建仓：</strong>约79.92元区间，加仓约12亿股（约96亿资金）</p>
+        <p>• <strong>Phase 3 高位派发：</strong>约95.53元区间，套现约5.9亿股（约560亿成交额）</p>
+        <p>• <strong>定增筹码：</strong>77.18元，锁定期6个月（2026年1月至今约5个月）</p>
+        <br>
+        <p><strong>关键成本位：</strong></p>
+        <p>① <strong>77.18元</strong>——定增价，重要心理支撑</p>
+        <p>② <strong>74.35元</strong>——6月4日低点，当日成交41.6亿元，为近期最大量</p>
+        <p>③ <strong>65.62元</strong>——Phase 1 VWAP，历史强支撑</p>
+        <p>④ <strong>63.79元</strong>——BOLL下轨，理论下跌极限</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三、技术面深度分析 -->
+  <div class="section">
+    <div class="section-title">三、技术面综合信号 📈</div>
+    <div class="grid">
+      <div class="indicator-card" style="text-align:left">
+        <div class="indicator-label">均线系统</div>
+        <div style="margin-top:8px">
+          <div class="stat-row"><span class="stat-label">MA5</span><span class="stat-value">69.57</span></div>
+          <div class="stat-row"><span class="stat-label">MA10</span><span class="stat-value">74.63</span></div>
+          <div class="stat-row"><span class="stat-label">MA20</span><span class="stat-value">82.16</span></div>
+          <div class="stat-row"><span class="stat-label">MA60</span><span class="stat-value">83.55</span></div>
+          <div class="stat-row" style="border:none"><span class="stat-label">状态</span><span class="tag tag-red">均线空头排列</span></div>
+        </div>
+      </div>
+      <div class="indicator-card" style="text-align:left">
+        <div class="indicator-label">MACD指标</div>
+        <div style="margin-top:8px">
+          <div class="stat-row"><span class="stat-label">DIF</span><span class="stat-value down">-5.34</span></div>
+          <div class="stat-row"><span class="stat-label">DEA</span><span class="stat-value down">-3.67</span></div>
+          <div class="stat-row"><span class="stat-label">Histogram</span><span class="stat-value down">-1.67</span></div>
+          <div class="stat-row" style="border:none"><span class="stat-label">状态</span><span class="tag tag-red">零轴下方，扩大中</span></div>
+        </div>
+      </div>
+      <div class="indicator-card" style="text-align:left">
+        <div class="indicator-label">KDJ指标</div>
+        <div style="margin-top:8px">
+          <div class="stat-row"><span class="stat-label">K值</span><span class="stat-value">15.68</span></div>
+          <div class="stat-row"><span class="stat-label">D值</span><span class="stat-value">11.17</span></div>
+          <div class="stat-row"><span class="stat-label">J值</span><span class="stat-value">24.70</span></div>
+          <div class="stat-row" style="border:none"><span class="stat-label">状态</span><span class="tag tag-yellow">低位钝化，有反弹需求</span></div>
+        </div>
+      </div>
+      <div class="indicator-card" style="text-align:left">
+        <div class="indicator-label">布林带BOLL</div>
+        <div style="margin-top:8px">
+          <div class="stat-row"><span class="stat-label">上轨</span><span class="stat-value">100.54</span></div>
+          <div class="stat-row"><span class="stat-label">中轨(MA20)</span><span class="stat-value">82.16</span></div>
+          <div class="stat-row"><span class="stat-label">下轨</span><span class="stat-value">63.79</span></div>
+          <div class="stat-row" style="border:none"><span class="stat-label">%B</span><span class="tag tag-blue">0.24 接近下轨</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 四、未来5天趋势预测 -->
+  <div class="section">
+    <div class="section-title">四、未来5个交易日趋势预测 🔮 <span class="tag tag-yellow" style="font-size:10px">预测基于技术面超跌反弹 + 主力成本支撑逻辑</span></div>
+
+    <div class="prediction-box">
+      <div class="prediction-title">📊 预测区间：2026-06-15 至 2026-06-19（黄框内为预测区域）</div>
+
+      <table style="width:100%; border-collapse: collapse;">
+        <tr style="background:rgba(234,179,8,0.1)">
+          <th style="padding:10px; border:1px solid #eab308; color:#92400e; font-size:13px">日期</th>
+          <th style="padding:10px; border:1px solid #eab308; color:#92400e; font-size:13px">预测收盘</th>
+          <th style="padding:10px; border:1px solid #eab308; color:#92400e; font-size:13px">预测涨跌</th>
+          <th style="padding:10px; border:1px solid #eab308; color:#92400e; font-size:13px">预测幅度</th>
+          <th style="padding:10px; border:1px solid #eab308; color:#92400e; font-size:13px">预测逻辑</th>
+        </tr>
+        <tr style="background:rgba(234,179,8,0.05)">
+          <td style="padding:10px; border:1px solid #eab308; color:#92400e; font-weight:600; text-align:center">06-15<br><span style="font-size:11px;color:#a16207">周一</span></td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="pred-val pred-down">71.50元</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="wave-down">▼ 绿跌</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center; color:#f85149">-1.6%</td>
+          <td style="padding:10px; border:1px solid #eab308; font-size:12px; color:#a16207">惯性下探，测试72元支撑</td>
+        </tr>
+        <tr style="background:rgba(234,179,8,0.08)">
+          <td style="padding:10px; border:1px solid #eab308; color:#92400e; font-weight:600; text-align:center">06-16<br><span style="font-size:11px;color:#a16207">周二</span></td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="pred-val pred-down">70.20元</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="wave-down">▼ 绿跌</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center; color:#f85149">-1.8%</td>
+          <td style="padding:10px; border:1px solid #eab308; font-size:12px; color:#a16207">测试BOLL下轨63.79元反弹位</td>
+        </tr>
+        <tr style="background:rgba(234,179,8,0.05)">
+          <td style="padding:10px; border:1px solid #eab308; color:#92400e; font-weight:600; text-align:center">06-17<br><span style="font-size:11px;color:#a16207">周三</span></td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="pred-val pred-up">72.80元</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="wave-up">▲ 红涨</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center; color:#3fb950">+3.7%</td>
+          <td style="padding:10px; border:1px solid #eab308; font-size:12px; color:#a16207">RSI超卖反弹触发，多头抵抗</td>
+        </tr>
+        <tr style="background:rgba(234,179,8,0.08)">
+          <td style="padding:10px; border:1px solid #eab308; color:#92400e; font-weight:600; text-align:center">06-18<br><span style="font-size:11px;color:#a16207">周四</span></td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="pred-val pred-up">74.50元</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="wave-up">▲ 红涨</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center; color:#3fb950">+2.3%</td>
+          <td style="padding:10px; border:1px solid #eab308; font-size:12px; color:#a16207">反弹延续，尝试收复MA5</td>
+        </tr>
+        <tr style="background:rgba(234,179,8,0.05)">
+          <td style="padding:10px; border:1px solid #eab308; color:#92400e; font-weight:600; text-align:center">06-19<br><span style="font-size:11px;color:#a16207">周五</span></td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="pred-val pred-down">73.00元</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center">
+            <span class="wave-down">▼ 绿跌</span>
+          </td>
+          <td style="padding:10px; border:1px solid #eab308; text-align:center; color:#f85149">-2.0%</td>
+          <td style="padding:10px; border:1px solid #eab308; font-size:12px; color:#a16207">MA10(74.63)处遇阻回落</td>
+        </tr>
+      </table>
+
+      <div class="pred-note">
+        <strong>预测总结：</strong>先抑后扬再抑，整体区间【70.20-74.50元】，周中反弹后再次回落。5日预测均价约 <strong>72.40元</strong>，较当前72.66元基本持平。<strong>趋势仍为弱势震荡筑底格局</strong>，建议等待更明确的底部信号。
+      </div>
+    </div>
+
+    <div class="summary-box" style="margin-top:16px">
+      <div class="summary-title">📌 操作建议摘要</div>
+      <div style="font-size:13px; color:#8b949e; line-height:2">
+        <p>① <strong>支撑位：</strong>70元（心理关口）→ 68元（整数）→ 63.79元（BOLL下轨）</p>
+        <p>② <strong>压力位：</strong>74.63元（MA10）→ 77.18元（定增价）→ 82.16元（MA20）</p>
+        <p>③ <strong>操作策略：</strong>短期不追涨，等待70元以下低吸机会；若能站稳74.63元，可视为短期转强信号</p>
+        <p>④ <strong>风险提示：</strong>若跌破63.79元BOLL下轨，则下跌趋势延续，支撑看60元整数位</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 五、综合研判 -->
+  <div class="section">
+    <div class="section-title">五、核心结论 🧠</div>
+    <div class="summary-box">
+      <div class="summary-title">三个核心判断</div>
+      <div style="font-size:14px; color:#8b949e; line-height:2">
+        <p><strong style="color:#f85149">1. 老鼠仓判断：</strong>不存在典型老鼠仓特征，但存在明显的<strong>三段式主力运作</strong>（建仓→拉升→派发），派发区间约95元恰对应历史高点，当前处于派发后的<strong>回落寻底阶段</strong>。这是正常的资金博弈，非老鼠仓。</p>
+        <br>
+        <p><strong style="color:#eab308">2. 主力意图判断：</strong>主力Phase 2成本约79.92元，当前处于轻微浮亏（-9%）。考虑到定增价77.18元与当前价高度接近，<strong>77元附近是关键防线</strong>。主力当前可能仍在场，未完全撤离，但已无拉升意愿，进入"护盘不出力"状态。</p>
+        <br>
+        <p><strong style="color:#58a6ff">3. 趋势判断：</strong>中长期下跌趋势未结束（均线空头排列，MACD零轴下方），但短期RSI超卖（24.8）积累了反弹动能。预测未来5天弱势震荡，先考验70元支撑，若能守住可能展开60-80元区间筑底行情。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    本报告仅供参考，不构成投资建议。股市有风险，投资需谨慎。<br>
+    数据来源：Tencent/同花顺/公开资料整理 | 生成时间：2026-06-12
+  </div>
+</div>
+</body>
+</html>

@@ -12,7 +12,8 @@ BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 NC='\033[0m'
 
-LOG_FILE="/data/hermes/workspace/MyDocuments/logs/cleanup_log_$(date +%Y%m%d_%H%M%S).txt"
+LOG_DIR="/data/hermes/workspace/MyDocuments/logs"
+LOG_FILE="$LOG_DIR/cleanup_log_$(date +%Y%m%d_%H%M%S).txt"
 
 log() {
     local msg="[$(date '+%Y-%m-%d %H:%M:%S')] $1"
@@ -26,6 +27,8 @@ section() {
 
 # 显示初始状态
 show_initial_state() {
+   rm -rf $LOG_DIR/*.txt
+
     section "初始磁盘使用情况"
     df -h / /home /data 2>/dev/null | column -t >> "$LOG_FILE" 2>/dev/null || df -h / >> "$LOG_FILE"
     

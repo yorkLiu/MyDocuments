@@ -90,6 +90,7 @@
 | 37 | `douyin-account-launch-expert`（抖音起号） | chenjin-cmd/agent-skills-launch-pack | 抖音新号起号与涨粉 Skill，覆盖账号定位、观看理由、标签校准、搜索流量预埋、3秒钩子、人格化表达、评论互动、私域冷启动、合集运营、9条视频小样本实验、数据复盘和30天执行计划。**触发**: 用户询问抖音起号、涨粉、新号冷启动、账号定位、低播放量、对标账号、短视频选题、完播率、评论互动、合集策略、私域启动或抖音内容复盘时。**使用方法**: 直接说「帮我规划抖音起号」「分析账号问题」「新号冷启动计划」。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
 | 38 | `channels-account-launch-expert`（视频号起号） | chenjin-cmd/agent-skills-launch-pack | 微信视频号起号专家 Skill，覆盖账号定位、人设打造、选题策划、视频脚本、私域承接、9条视频小样本实验、数据复盘和30天执行计划。**触发**: 用户询问视频号起号、视频号涨粉、新号冷启动、账号定位、低播放量、对标账号、视频号脚本、完播率、评论互动或视频号内容复盘时。**使用方法**: 直接说「帮我规划视频号起号」「分析视频号数据」「30天起号计划」。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
 | 39 | `x-twitter-cold-start-expert`（X起号） | chenjin-cmd/agent-skills-launch-pack | 中文 X/Twitter 冷启动专家 Skill，覆盖账号定位、内容主题、回复区曝光、主贴/Thread 转化、7天执行计划、周复盘表和增长诊断。**触发**: 用户想做X账号冷启动、推特起号、500粉以内增长、个人IP定位、内容矩阵、互动回复策略、将真实工作流转成内容、复盘X数据，或要求基于账号/选题/截图制定可执行起号方案时。**使用方法**: 直接说「帮我做X起号规划」「分析推特账号」「7天冷启动计划」。参考：https://github.com/chenjin-cmd/agent-skills-launch-pack_ |
+| 40 | `female-portrait-director`（女性人像导演） | liyue-aigc/female-portrait-director | ✅ 已安装：`/data/hermes/.hermes/skills/female-portrait-director-skill/`（name: female-portrait-director）。AI 人像图像 Prompt 优化工具，将零散参数扩展为摄影导演级 Prompt。20 种视觉风格路线（CCD/古风/电商/法式/港风/新车/新中式/低暗光等），含冲突检测/安全边界/参考图锁重/参数推荐等工具链。**用法**: 说「生成一张XX风格人像」「优化这个人像Prompt」「帮我写CCD曲线风格人像」。参考：https://github.com/liyue-aigc/female-portrait-director |
 
 ## 新增来源链接
 

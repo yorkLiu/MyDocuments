@@ -190,3 +190,23 @@
 - 模板: `assets/template-editorial-card.html`，WebGL: `assets/magazine-bg-webgl.js`
 - 布局模板: M01-M15 (封面/清单/账本/对比/引用等)
 - 调色板: ink-classic / indigo-porcelain / forest-ink / kraft-paper / dune / midnight-ink
+
+### 2026-07-17: handdraw-story-video（手绘故事视频生成）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 29 | `handdraw-story-video` | xiejunjie524/handdraw-story-video | 把 7–9 幅手绘故事母图制作成 35–45 秒竖屏短视频：先从左到右显现黑白线稿，再沿相同方向逐步填入低饱和色彩。基于 HyperFrames + GSAP，输出 720×960 / 30fps 竖屏视频。兼容任意生图模型（不绑定 API），支持字幕、道具文字、时长/素材自动校验。适合小红书/抖音暖心故事/励志短片内容批量生产 |
+
+- 来源: https://github.com/xiejunjie524/handdraw-story-video
+- 环境: Python 3.10+ / Node.js 18+ / FFmpeg / HyperFrames / GSAP
+- 安装: `git clone → pip install -r requirements.txt → npm install gsap`
+- 核心流程:
+  1. 复制模板 `cp templates/story-template.json story.json`，填写故事配置
+  2. 每幕生成一张 1K 彩色母图，用 `python scripts/make_lineart.py` 提取对齐线稿
+  3. 准备 HyperFrames: `mkdir -p hyperframes/assets/vendor && cp node_modules/gsap/dist/gsap.min.js hyperframes/assets/vendor/`
+  4. 放入图片和 BGM 到 `hyperframes/assets/`，路径与 `story.json` 一致
+  5. 生成页面: `python scripts/build_story.py story.json hyperframes/index.html --check-assets`
+  6. 校验: `npx hyperframes check hyperframes/index.html --json`
+  7. 渲染: `npx hyperframes render hyperframes/index.html --output renders/story-v1.mp4 --workers 1`
+- 画面原则: 8 幕各约 5 秒，主体占下方 45%–55%，纸白留白，单帧最多 2–3 人
+- Codex Skill: 可将仓库链接到 `$CODEX_HOME/skills/handdraw-good-deed-story`，用"做一个 40 秒线稿逐渐上色的暖心故事"触发

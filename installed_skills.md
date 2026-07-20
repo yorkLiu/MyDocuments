@@ -210,3 +210,27 @@
   7. 渲染: `npx hyperframes render hyperframes/index.html --output renders/story-v1.mp4 --workers 1`
 - 画面原则: 8 幕各约 5 秒，主体占下方 45%–55%，纸白留白，单帧最多 2–3 人
 - Codex Skill: 可将仓库链接到 `$CODEX_HOME/skills/handdraw-good-deed-story`，用"做一个 40 秒线稿逐渐上色的暖心故事"触发
+
+### 2026-07-17: equity-research（机构级投研报告）
+
+| # | Skill 名称 | 来源 | 说明 |
+|---|-----------|------|------|
+| 30 | `equity-research` | rollingSirius/equity-research-skill | 机构级个股投研报告 Agent Skill：九章结构 + 多方法估值交叉验证（DCF/相对估值/情景加权）。覆盖美股/港股/A股，含 A/H 双重上市溢价对比。触发词：公司名/代码 + 任何投研意图。IBKR/Morningstar/联网三路并行采集，降级自动标注 |
+
+- 来源: https://github.com/rollingSirius/equity-research-skill
+- 触发词: "研究/分析一下某只股票"、"值不值得买"、"写投研报告"、"is this stock a buy"
+- 工作流: 明确标的 → 并行采集(IBKR+Morningstar+联网) → 对账时间戳 → 九章报告 → DCF估值(≥3种方法)
+- 核心文件: `references/report-template.md`（九章模板）/ `references/valuation-methods.md`（标定规则）/ `scripts/dcf.py`（计算器）
+- 质量要求: 结论低估/合理/高估必须由规则产出，DCF 全用脚本计算，"未获取到"诚实标注
+
+### 2026-07-17: InStock（A股量化系统）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 31 | `InStock`（myhhub/stock） | myhhub/stock | 全功能 A 股量化投资平台：200+ 维度综合选股、32 种技术指标（与同花顺/通达信一致）、61 种 K 线形态识别、筹码分布（CYQ，与东方财富一致）、策略选股、回测、自动交易（仅 Windows）。Docker 一键部署，Web UI（9988端口）。Apache-2.0 |
+
+- 来源: https://github.com/myhhub/stock
+- Docker: `docker run -dit --name InStock -p 9988:9988 -e db_host=localhost ... mayanghua/instock:latest`
+- 访问: http://localhost:9988/
+- 技术: Python + talib + pandas + MySQL，指标和筹码计算结果与商业软件对标
+- ⚠️ 自动交易仅支持 Windows；需一定量化基础，非 AI 选股工具

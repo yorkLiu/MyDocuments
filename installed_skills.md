@@ -234,3 +234,16 @@
 - 访问: http://localhost:9988/
 - 技术: Python + talib + pandas + MySQL，指标和筹码计算结果与商业软件对标
 - ⚠️ 自动交易仅支持 Windows；需一定量化基础，非 AI 选股工具
+
+### 2026-07-20: story-to-handdrawn-video（手绘日记漫画动画）
+
+| # | Skill 名称 | 来源 | 说明 |
+|---|-----------|------|------|
+| 32 | `story-to-handdrawn-video` | gnipbao/story-to-handdrawn-video | 将中文故事文案或有序手绘图片，转换成 3:4 竖屏手绘日记漫画动画：手写字幕、"文字→黑白画稿→彩色插画"从左到右揭示、可选右下角卷页翻书转场。基于 Remotion，输出无声 H.264 画面轨。Codex/Agent Skill 分发版在 `skill-package/` 目录下 |
+
+- 来源: https://github.com/gnipbao/story-to-handdrawn-video
+- 技术栈: Remotion (React/TypeScript) + H.264 MP4
+- 输出规格: 1080×1440 正式渲染 / 720×960 快速预览
+- 动画阶段: 文字 → 黑白画稿 → 彩色插画（均从左到右揭示）
+- 可选转场: 右下角卷页翻书（纸背保留淡化原页纹理）
+- 环境: Node.js / npx remotion preview / npx remotion render

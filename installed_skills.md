@@ -247,3 +247,89 @@
 - 动画阶段: 文字 → 黑白画稿 → 彩色插画（均从左到右揭示）
 - 可选转场: 右下角卷页翻书（纸背保留淡化原页纹理）
 - 环境: Node.js / npx remotion preview / npx remotion render
+
+### 2026-07-22: free-stockdb（本地A股量化数据引擎）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 33 | `free-stockdb` | hello245m/free-stockdb | 本地 A 股量化数据引擎：日K / 分钟K / ETF / tick 数据同步、清洗、复权；内置 39 种指标 + 5 种指数；支持 Python SDK / HTTP API / Excel / HTML / MCP 五种调用方式。Windows exe 可直接运行，增量同步，Zstd 压缩存储 |
+
+- 来源: https://github.com/hello245m/free-stockdb
+- 下载: https://github.com/hello245m/free-stockdb/releases （Windows exe 版）
+- 数据: A股日K、分钟K（1/5/15/30分钟）、ETF、tick 级，Zstd 压缩，本地存储
+- 内置指标: 39 种技术指标 + 5 种指数（Rust 计算核心，比 pandas 快 3 倍）
+- 复权: 内置完整复权因子，查询时写时计算
+- 板块: 申万一二三级 + 1200 概念板块，毫秒查询
+
+---
+
+## 使用方法
+
+### 前提（Windows）
+
+下载 [Releases](https://github.com/hello245m/free-stockdb/releases) 的 Windows exe 包，解压后：
+
+1. **双击 `数据更新.exe`** → 等待数据同步完成（可多次退出/重启直到同步完）
+2. **双击 `stockdb.exe`** → 启动本地数据库服务（监听 7899 端口）
+
+> ⚠️ 数据更新前先退出 stockdb.exe
+
+### 方式一：Python SDK（推荐）
+
+```bash
+# 1. 运行一次安装脚本（将 pybao 模块写入 Python 全局路径）
+python pybao/安装.py
+
+# 2. 启动数据库后，任何位置均可导入
+python
+>>> from stockdb import init, rd
+>>> from stock_sdk import StockDBClient
+>>>
+>>> client = StockDBClient(host="127.0.0.1", port=7899)
+>>> df = client.get_data("日K", "000001", start="2024-01-01", end="2024-12-31")
+>>> print(df)
+```
+
+> `stockdb.pyd` 需要与 Python 版本匹配（3.8+ 非自由线程 / 3.14t+ 自由线程）
+
+### 方式二：HTTP API
+
+```bash
+# 启动后访问 http://127.0.0.1:7899
+python 调用方式/http/http_api.py
+```
+
+直接浏览器打开 `数据网页版.html` 可可视化查看行情数据。
+
+### 方式三：Excel / WPS
+
+```bash
+# 使用 WPS 宏脚本
+# 见 调用方式/excel/wps_js_macro.js
+```
+
+### 方式四：AI MCP（Claude Desktop / Cursor 等）
+
+1. 先运行一次 `pybao/安装.py`
+2. 编辑 Claude Desktop 配置 `claude_desktop_config.json`，添加：
+
+```json
+{
+  "mcpServers": {
+    "stockdb-native": {
+      "command": "python",
+      "args": ["-u", "C:/path/to/ai_mcp/stock_mcp_server.py"]
+    }
+  }
+}
+```
+
+3. 重启 Claude Desktop，确保 stockdb.exe 在后台运行
+
+> MCP Server 依赖 `native_mcp.py`，零第三方依赖
+
+---
+
+### Linux 服务器用法（直接调用本地数据文件）
+
+该项目本质是本地数据文件 + C++ 时序引擎，数据路径在 `./data/`。在没有 stockdb.exe 的 Linux 端，可以直接读取 `./data/` 下的 Zstd 压缩文件自己解包分析（不依赖 exe）。

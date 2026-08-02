@@ -247,3 +247,145 @@
 - 动画阶段: 文字 → 黑白画稿 → 彩色插画（均从左到右揭示）
 - 可选转场: 右下角卷页翻书（纸背保留淡化原页纹理）
 - 环境: Node.js / npx remotion preview / npx remotion render
+
+### 2026-07-22: reverse-skill（逆向/渗透/安全技能路由包）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 34 | `reverse-skill` | zhaoxuya520/reverse-skill | AI 自动化逆向工程/渗透测试技能路由包。当 Claude Code/Codex/Cursor 等 AI Agent 遇到 APK、二进制、前端 JS 加密、CTF 挑战时，自动路由到正确方法论，调用本机工具执行，避免盲目猜命令。30+ 子技能模块，覆盖逆向、渗透、取证、威胁狩猎等场景 |
+
+- 来源: https://github.com/zhaoxuya520/reverse-skill
+- Stars: 12,635+（GitHub Trending 热门项目）
+- 许可证: MIT
+- 技术栈: PowerShell + Python + Node.js + Java
+
+---
+
+## 核心功能
+
+| 模块 | 说明 |
+|------|------|
+| **路由包** | 用户任务 → RULES.md → MASTER-ROUTING → 目标 Skill → 工具/MCP/脚本 |
+| **自动路由** | 根据任务类型（APK/二进制/JS/PCAP 等）自动匹配最佳技能 |
+| **工具索引** | 自动检测本机已安装工具，生成 tool-index.md |
+| **作战契约** | ops/ 目录包含 scope 门禁、证据链、角色映射、时间线管理 |
+| **经验库** | field-journal/ 记录每次工作成果，持续进化 |
+
+## 支持场景（30+ 技能）
+
+| 场景 | 入口 |
+|------|------|
+| APK/Android 分析 | `skills/apk-reverse/` |
+| iOS/移动端 | `skills/mobile-reverse/` |
+| 二进制逆向（exe/dll/so/elf） | `skills/ida-reverse/` / `skills/radare2/` |
+| .NET/C# | `skills/dotnet-reverse/` |
+| 前端 JS/加密参数 | `skills/js-reverse/` |
+| DSL VM/自定义虚拟机 | `skills/reverse-engineering/dsl-vm-reverse/` |
+| 恶意软件分析 | `skills/malware-analysis/` |
+| 渗透测试/扫描 | `skills/pentest-tools/` |
+| 攻击链编排 | `skills/attack-chain/` |
+| CTF 竞赛 | `CTF-Sandbox-Orchestrator/`（40+ 子技能） |
+| 固件/IoT | `skills/firmware-pentest/` |
+| Patch Diff/N-Day | `skills/patch-diff-exploit/` |
+| Pwn/漏洞利用 | `skills/pwn-chain/` |
+| EDR 绕过 | `skills/edr-bypass-re/` |
+| API/GraphQL 安全 | `skills/api-security/` |
+| 供应链安全 | `skills/supply-chain-security/` |
+| LLM/AI 安全 | `skills/llm-security/` |
+| OLLVM 去混淆 | `skills/reverse-engineering/references/ollvm-deobfuscation.md` |
+| 数字取证 | `skills/digital-forensics/` |
+| 威胁狩猎 | `skills/threat-hunting/` |
+| Windows AD/Kerberos | `skills/windows-ad/` |
+| IoT/ICS/SCADA | `skills/ot-ics/` |
+| Wi-Fi/无线安全 | `skills/wifi-wireless/` |
+
+## 使用方式
+
+### 方式一：直接给 AI Agent 指令
+
+把任务描述发给 Claude Code/Codex/Cursor，Agent 会自动读取路由包：
+
+```
+帮我分析这个 APK 的加密逻辑
+→ 自动路由到 apk-reverse → 调用 jadx/apktool/Frida
+```
+
+```
+这个二进制文件被 OLLVM 混淆了，帮我脱密
+→ 自动路由到 ollvm-deobfuscation → 调用 IDA/Ghidra/Miasm
+```
+
+### 方式二：手动路由命令
+
+```bash
+# 自动路由并生成任务范围
+powershell -File skills/scripts/master-route.ps1 -Hint "分析 APK 加密逻辑"
+
+# 初始化案例目录
+powershell -File skills/scripts/case-init.ps1 -Hint "逆向 APK" -CaseName "my-case"
+
+# 检查案例状态（授权、目标、网络范围）
+powershell -File skills/scripts/case-guard.ps1 -CaseRoot work/my-case
+```
+
+### 方式三：工具索引更新
+
+```bash
+# Linux/macOS
+bash skills/scripts/refresh-tool-index.sh
+
+# Windows
+powershell -File skills/scripts/refresh-tool-index.ps1
+
+# Kali Linux
+bash kali/scripts/refresh-tool-index.sh
+```
+
+查看检测结果：`skills/tool-index.md`
+
+## 前置依赖
+
+| 依赖 | 用途 |
+|------|------|
+| Java/JDK | jadx、apktool |
+| Node.js 22.12+ | JS 工具链、MCP 服务 |
+| Python 3.x | Frida、辅助脚本 |
+| Claude Code / Codex / Cursor | AI Agent 客户端 |
+| IDA Pro / Ghidra / radare2 | 二进制逆向工具 |
+| Burp Suite | Web 渗透 |
+
+## 关键文件结构
+
+```
+reverse-skill/
+├── README.md / README_zh.md / README_AI.md
+├── RULES.md / RULES_zh.md          # 全局路由规则
+├── skills/
+│   ├── MASTER-ROUTING.md           # PRIMARY 快路径
+│   ├── SKILL.md                    # 主入口
+│   ├── routing.md                  # 任务→技能路由矩阵
+│   ├── ops/                        # 作战契约
+│   │   ├── scope-contract.md       # 启动门禁
+│   │   ├── evidence-finding-path.md # 证据链
+│   │   ├── role-map.md             # 角色映射
+│   │   └── timeline-workitem.md    # 时间线
+│   ├── scripts/                    # 自动化工具
+│   │   ├── master-route.ps1        # 主路由脚本
+│   │   ├── case-init.ps1           # 案例初始化
+│   │   └── refresh-tool-index.sh   # 工具索引
+│   ├── apk-reverse/ mobile-reverse/ js-reverse/
+│   ├── ida-reverse/ radare2/ ghidra-reverse/
+│   ├── malware-analysis/ pentest-tools/ attack-chain/
+│   └── ...（30+ 技能模块）
+├── CTF-Sandbox-Orchestrator/       # CTF 沙箱编排器
+├── work/                           # 本地案例（gitignored）
+└── reports/                        # 报告输出
+```
+
+## 设计理念
+
+1. **先路由后动手** — 禁止 AI 盲目猜测命令，必须匹配正确技能模块
+2. **授权门禁** — scope.md 未就绪禁止对目标执行操作
+3. **证据链** — 每个发现必须关联原始证据（Evidence→Finding→Path）
+4. **角色分离** — 明确 lead/specialist 职责，避免混乱
+5. **经验复用** — field-journal 记录每次工作，持续进化

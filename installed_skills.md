@@ -448,3 +448,61 @@ make hyperframes-doctor  # 校验 HyperFrames 运行时
 ```
 
 > 注意: OpenMontage 是"项目型"系统而非单个 skill——它靠 AGENTS.md/AGENT_GUIDE.md + pipeline_defs/ + skills/ 目录驱动 agent 工作，使用时把整个仓库交给 AI 助手即可。
+
+### 2026-09-21: Hypit（AI 克隆爆款视频工作流）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 36 | `hypit` | hypit-ai/hypit | 用 AI Agent 克隆任意爆款视频的完整工作流：换脸、换词、换 B-roll，一条命令出 100 个变体。SVML 语义视频语言（锚定到词语而非秒数），生成模型可选——不接生成 API 也能编译字幕/动效/代码渲染画面出片 |
+
+- 来源: https://github.com/hypit-ai/hypit
+- Stars: 10,899+（Trendshift #1 TypeScript Repository of the Day）
+- 许可证: Apache-2.0 (with conditions)
+- 技术栈: TypeScript 5.9 / Node.js 22.15+ / pnpm 10.33（monorepo）
+- 官网: https://hypit.ai
+
+## 核心能力
+
+| 模块 | 说明 |
+|------|------|
+| **视频克隆** | 丢进一个参考视频，agent 克隆完整工作流（素材/字幕/B-roll/特效），锚定到词语 |
+| **SVML 语言** | Semantic Video Markup Language，agent 写 SVML/SVS 描述视频，Runtime 编译渲染 |
+| **零生成费用模式** | 不接 AI 生成模型也能出片：字幕+动效+代码渲染编译成视频 |
+| **本地服务** | whisperx（语音识别）/ image-opencv（图像处理）/ yt-dlp（视频下载） |
+| **构建管线** | `hypit build` 提交构建 → `status` 跟踪 → `get` 导出成片 |
+
+## 安装（本机已装 ✅）
+
+```bash
+git clone https://github.com/hypit-ai/hypit.git ~/.hermes/skills/hypit
+cd ~/.hermes/skills/hypit
+npx -y pnpm install          # 依赖安装（~4分钟）；esbuild/puppeteer 的 build scripts 被 pnpm 默认跳过，不影响 CLI
+ln -sf bin/hypit.mjs /data/hermes/.local/bin/hypit   # 挂到 PATH
+```
+
+**前置依赖**: Node.js 22.15+（本机 22.22.3 ✅）· pnpm 10.33（npx 临时调用 ✅）
+
+**本机验证**: `hypit --version` = 0.2.9 ✅ · `hypit --help` 命令表正常 ✅ · `hypit doctor` = 0 diagnostics ✅ · Skill 位于 `hypit/skills/hypit/SKILL.md`（Hermes 递归扫描可识别）
+
+## 使用方法
+
+**方式一：Skill 触发（推荐）**
+Skill `hypit` 教 agent 如何指挥视频生产。直接说：
+```
+用 hypit 克隆这个视频的风格：https://...（或本地视频路径），换成我的产品主题
+```
+agent 读 SKILL.md → 写/改 SVML → `hypit check` 校验 → `hypit build` 提交渲染。
+
+**方式二：直接 CLI**
+```bash
+cd <你的视频项目目录>
+hypit check source.svml          # 校验 SVML 源文件
+hypit plan run.svml              # 预览选中工作流（不执行）
+hypit pricing run.svml           # 查看所选服务商报价
+hypit build run.svml --follow    # 提交构建并实时跟踪
+hypit status <build-id> --watch  # 跟踪进度
+hypit get <build-id> --output out --to ./out.mp4   # 导出成片
+hypit doctor                     # 诊断外部依赖
+```
+
+**可选服务**: 默认推荐 HypiHub 托管模型服务（需账号）；也可用自家 API 或本地模型——告诉 agent 服务名和 API 文档即可配置。Hypit 本身免费，费用只在你接的模型/Agent 服务上。

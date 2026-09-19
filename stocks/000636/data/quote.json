@@ -1,0 +1,85 @@
+[
+  {
+    "marketId": "51",
+    "name": "风华高科",
+    "code": "000636",
+    "price": 56.65,
+    "prevClose": 58.58,
+    "open": 57.66,
+    "volume": 1273950,
+    "outerVolume": 616134,
+    "innerVolume": 657816,
+    "bid": [
+      {
+        "price": 56.65,
+        "volume": 657
+      },
+      {
+        "price": 56.64,
+        "volume": 118
+      },
+      {
+        "price": 56.63,
+        "volume": 536
+      },
+      {
+        "price": 56.62,
+        "volume": 2991
+      },
+      {
+        "price": 56.61,
+        "volume": 1114
+      }
+    ],
+    "ask": [
+      {
+        "price": 56.66,
+        "volume": 105
+      },
+      {
+        "price": 56.67,
+        "volume": 356
+      },
+      {
+        "price": 56.68,
+        "volume": 266
+      },
+      {
+        "price": 56.69,
+        "volume": 493
+      },
+      {
+        "price": 56.7,
+        "volume": 158
+      }
+    ],
+    "time": "20260917161424",
+    "timestamp": 1789632864000,
+    "tz": "Asia/Shanghai",
+    "change": -1.93,
+    "changePercent": -3.29,
+    "high": 59.48,
+    "low": 56.6,
+    "volume2": 1273950,
+    "amount": 737389,
+    "turnoverRate": 11.1,
+    "pe": 159.8,
+    "amplitude": 4.92,
+    "circulatingMarketCap": 650.05,
+    "totalMarketCap": 650.05,
+    "pb": 5.2,
+    "limitUp": 64.44,
+    "limitDown": 52.72,
+    "volumeRatio": 0.8,
+    "avgPrice": 57.88,
+    "peStatic": 111.96,
+    "peDynamic": 229.44,
+    "high52w": 83.9,
+    "low52w": 14.73,
+    "circulatingShares": 1147489969,
+    "totalShares": 1147490419,
+    "market": "CN",
+    "assetType": "stock",
+    "source": "tencent"
+  }
+]

@@ -180,7 +180,8 @@ rotate_logs() {
     section "日志轮转"
     local log_dir="/data/hermes/workspace/MyDocuments"
     if [ -d "$log_dir" ]; then
-        local count=$(ls -1 "$log_dir"/cleanup_log_*.txt 2>/dev/null | wc -l || echo 0)
+        local count=$(ls -1 "$log_dir"/cleanup_log_*.txt 2>/dev/null | wc -l | tr -d ' \n')
+        count=${count:-0}
         if [ "$count" -gt 5 ]; then
             ls -1t "$log_dir"/cleanup_log_*.txt 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
             log "${GREEN}✓ 已轮转旧日志文件，保留最近 5 个${NC}"

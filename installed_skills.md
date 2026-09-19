@@ -389,3 +389,62 @@ reverse-skill/
 3. **证据链** — 每个发现必须关联原始证据（Evidence→Finding→Path）
 4. **角色分离** — 明确 lead/specialist 职责，避免混乱
 5. **经验复用** — field-journal 记录每次工作，持续进化
+
+### 2026-09-21: OpenMontage（开源 Agentic 视频生产系统）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 35 | `OpenMontage` | calesthio/OpenMontage | 首个开源 agentic 视频生产系统。12 条生产管线、100+ 工具、700+ agent skill 文件。把 AI 编码助手变成完整视频制作工作室：自然语言描述需求，agent 自动完成调研→编剧→素材生成→剪辑→成片 |
+
+- 来源: https://github.com/calesthio/OpenMontage
+- Stars: 60,000+（GitHub Trending #1 Repository of the Day）
+- 许可证: AGPLv3
+- 技术栈: Python 3.10+ / Remotion (React) / HyperFrames (HTML+GSAP) / FFmpeg
+- 官方站: https://www.openmontage.video/
+
+## 核心能力
+
+| 模块 | 说明 |
+|------|------|
+| **12 条管线** | 动画解说 / 动效 / 数字人播报 / 电影预告 / 切片工厂 / 纪录片蒙太奇 / 混合 / 多语本地化配音 / 播客切片 / 屏幕演示 / 出镜口播 / 角色动画 |
+| **100+ 工具** | 视频生成、图像、TTS、音乐、音频混音、字幕、增强、分析 |
+| **60+ 服务商** | 云端 API + 本地模型 + 素材库 + 开源档案，统一评分选择层 |
+| **零 key 可用** | Piper TTS + Archive.org/NASA/Wikimedia 档案片 + Remotion/HyperFrames，免费就能出片 |
+| **质量门禁** | 成片前 ffprobe/抽帧/响度校验 + 决策日志 + 预算治理 |
+
+## 安装（本机已装 ✅）
+
+```bash
+git clone https://github.com/calesthio/OpenMontage.git
+cd OpenMontage
+make setup   # 建 venv + pip 依赖 + remotion-composer npm install + piper-tts + HyperFrames 预热 + 生成 .env
+# 无 make 时: python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+#   && cd remotion-composer && npm install && cd .. && pip install piper-tts && cp .env.example .env
+```
+
+**前置依赖**: Python 3.10+ · FFmpeg · Node.js 18+ · AI 编码助手（Claude Code/Cursor/Codex…）
+
+**本机安装位置**: `~/.hermes/skills/OpenMontage/`
+已验证: `.venv` Python 依赖 ✅ · Remotion ✅ · HyperFrames runtime_available=True (npm 0.8.50) ✅ · piper-tts ✅ · 工具注册表 discover ✅ · `.env` 已生成
+
+## 使用方法
+
+把 OpenMontage 目录交给 AI 编码助手（或直接在本对话让我操作），用自然语言下需求：
+
+| 场景 | 示例 |
+|------|------|
+| 零 key 动画解说 | "Make a 45-second animated explainer about why the sky is blue" |
+| 免费真实素材纪录片 | "Make a 90-second documentary montage about city life in the rain. Use real footage only, no narration, elegiac tone, with music." |
+| 参考视频二创 | 贴一个喜欢的 YouTube short："Make me something like this, but about CRISPR" |
+| 付费生成（约 $0.15–1.5/条） | "Create a 30-second Ghibli-style animated video of a floating library in the clouds" |
+
+**可选**: `.env` 里加 API key 解锁更强的云能力（FAL_KEY / KLING_API_KEY / SUNO_API_KEY / GOOGLE_API_KEY 等，全部可选）；有 NVIDIA GPU 时 `make install-gpu` 可跑本地视频生成（wan2.2 等）。
+
+**常用命令**:
+```bash
+make demo          # 渲染零 key 演示视频
+make install-gpu   # GPU 本机视频生成
+make hyperframes-doctor  # 校验 HyperFrames 运行时
+```
+
+> 注意: OpenMontage 是"项目型"系统而非单个 skill——它靠 AGENTS.md/AGENT_GUIDE.md + pipeline_defs/ + skills/ 目录驱动 agent 工作，使用时把整个仓库交给 AI 助手即可。

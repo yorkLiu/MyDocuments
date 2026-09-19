@@ -506,3 +506,57 @@ hypit doctor                     # 诊断外部依赖
 ```
 
 **可选服务**: 默认推荐 HypiHub 托管模型服务（需账号）；也可用自家 API 或本地模型——告诉 agent 服务名和 API 文档即可配置。Hypit 本身免费，费用只在你接的模型/Agent 服务上。
+
+### 2026-09-21: handraw-style（手绘风格编号画廊与双语提示词）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 37 | `handraw-style` | yang0/handraw-style | 274 种手绘风格编号画廊 + 双语提示词 Skill。不想描述画风的人：选一个编号（如 041）+ 给个主题，即得带风格名称的中英文提示词，直接丢给任意生图 AI。支持纯图/图文两种模式，含文章配图规划器 |
+
+- 来源: https://github.com/yang0/handraw-style
+- Stars: 2,497+
+- 技术栈: 纯 Skill 包（Markdown + HTML 画廊 + WebP 参考图，无 Python/Node 运行时依赖）
+- 素材: 25M images/（200 张单风格图 001-200 + 119 张 201-400 分目录 + 分类拼图 webp）
+
+## 核心能力
+
+| 模块 | 说明 |
+|------|------|
+| **274 种风格编号** | 001 国际社论漫画/幽默手绘、036 绘本叙事、055 现代平面艺术化人物、D/E 区更多体系 |
+| **编号 + 主题 → 提示词** | "041号风格，主题：秋天的第一杯奶茶" → 中英文提示词（带风格名） |
+| **纯图 / 图文模式** | 纯图=主题决定画面；图文=保留主题原文参与构图（金句/海报/社媒配图） |
+| **模型能力判断** | 按 gpt-image-2 能力清单判断：能凭风格名激活就不传参考图，不能激活才传编号单图，避免锁死参考图主体/构图 |
+| **文章配图规划器** | `article-illustration-planner`：分析文章、选插图位置、设计每张图传达什么、生成对应提示词 |
+| **画廊浏览** | `skills/handdraw-style-prompter/gallery/index.html`（本地 HTML，浏览器打开） |
+| **风格导入** | `tweet-style-importer`（抓 X/Twitter 推文图入风格库）+ `style-library-importer`（新增命名/文本风格） |
+
+## 安装（本机已装 ✅）
+
+```bash
+git clone https://github.com/yang0/handraw-style.git ~/.hermes/skills/handraw-style
+# 纯静态 skill 包，无需 pip / npm install，clone 即用
+```
+
+**本机验证**: 根 SKILL.md（handdraw-style-prompter 入口）✅ · `skills/handdraw-style-prompter/` 与 `article-illustration-planner/` 子 skill ✅ · `images/individual/` 319 张参考图 ✅ · 画廊 index.html ✅ · 导入脚本（scripts/*.py）✅ · `.agents/skills/` 两个 importer skill ✅
+
+## 使用方法
+
+**触发方式一：编号生图**
+```
+041号风格，主题：秋天的第一杯奶茶
+纯图模式，041号风格，主题：秋天的第一杯奶茶
+图文模式，267号风格，主题：有很多事你当时想不通，别着急，过段时间你可能就忘了。
+```
+得到带风格名称的中英文提示词，复制给你在用的生图 AI（gpt-image / agnes-image 等）。
+
+**触发方式二：文章配图**
+```
+帮我给这篇文章配图：[粘贴文章]，用 055 号风格
+```
+agent 调用 `article-illustration-planner`：选插图位置 → 设计每张图内容 → 生成风格化提示词。
+
+**查风格**：浏览器打开 `~/.hermes/skills/handraw-style/skills/handdraw-style-prompter/gallery/index.html`，记下喜欢的编号再用。
+
+**新增风格**（可选）：`scripts/scrape_tweet.py` / `import_tweet_style.py` 抓推文图自动分配下一编号并重建画廊。
+
+> 注意：安装时选仓库根目录 `.`（`$skill-installer install --repo yang0/handraw-style --path .`），不要只装 `skills/handdraw-style-prompter/` 子目录，根目录才含画廊与编号参考图。本机 Hermes 直接从 clone 的根目录识别根 SKILL.md。

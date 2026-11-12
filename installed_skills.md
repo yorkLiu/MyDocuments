@@ -13,6 +13,7 @@
 | 5 | `pptx` | anthropics/skills | PPT 演示文稿：创建、编辑、设计（pptxgenjs） |
 | 6 | `web-access` | eze-is/web-access | 联网搜索 + 浏览器 CDP 操控（含本地 Chrome 登录态） |
 | 7 | `pua` | tanweai/pua | AI 激励引擎：大厂 PUA 话术驱动的调试方法论 |
+| 8 | GPT-Image Prompt | Prompt as Code |  https://github.com/freestylefly/awesome-gpt-image-2/blob/main/README.zh-CN.md GPT-Image2 工业级提示词引擎与模板库，500+ 个案例逆向工程，20+ 套工业级模板|
 
 ## 来源链接
 
@@ -560,3 +561,53 @@ agent 调用 `article-illustration-planner`：选插图位置 → 设计每张�
 **新增风格**（可选）：`scripts/scrape_tweet.py` / `import_tweet_style.py` 抓推文图自动分配下一编号并重建画廊。
 
 > 注意：安装时选仓库根目录 `.`（`$skill-installer install --repo yang0/handraw-style --path .`），不要只装 `skills/handdraw-style-prompter/` 子目录，根目录才含画廊与编号参考图。本机 Hermes 直接从 clone 的根目录识别根 SKILL.md。
+
+### 2026-09-21: stop-slop-cn（中文去 AI 味写作风格规范）
+
+| # | 项目名称 | 来源 | 说明 |
+|---|---------|------|------|
+| 38 | `stop-slop-cn` | w568w/stop-slop-cn | 中文写作风格纠偏 Skill。9 条规则治 AI 套话、商业黑话、直译腔、模板化表达：删开场套话、禁空头承诺、去黑话/单字词/无效二元对比/直译英语/固定句式/滥用列表/免责声明。适配 Opus 4.7+、GPT-5.2+ 等强模型 |
+
+- 来源: https://github.com/w568w/stop-slop-cn
+- Stars: 17+
+- 许可证: Apache-2.0
+- 技术栈: 纯 Markdown Skill（无代码、无运行时依赖、零配置）
+
+## 核心规则（9 条）
+
+| 规则 | 核心要求 |
+|------|---------|
+| 1. 禁止开场套话/谄媚 | 删「你说得对/我很高兴帮您」等客套 |
+| 2. 禁止结尾询问意图/空头承诺 | 别问「要不我顺手加个 XXX？」 |
+| 3. 禁止商业黑话/表演腔 | 去「落盘/闭环/吃下/硬撑/硬做/赋能」 |
+| 4. 禁止滥用单字词 | 单字动词换双字：补→补充、核→检查、吃→阅读 |
+| 5. 禁止无效「不是……而是……」 | 用户没问对比别自作主张对比 |
+| 6. 必须自然翻译、拒直译英语 | 「偏大」→「有点夸张」、「机械变短」→「机械地缩短」 |
+| 7. 避免固定句式/模板化 | 换不同说法别老「真正值得用的我会选」 |
+| 8. 禁止滥用 Bullet List | 能一句话别拆成列表 |
+| 9. 禁止免责声明/防御性措辞 | 直接给肯定/否定答案，别「不能证明/不能推广」 |
+
+## 安装（本机已装 ✅）
+
+```bash
+git clone https://github.com/w568w/stop-slop-cn.git ~/.hermes/skills/stop-slop-cn
+# 纯 Markdown，无依赖、无配置、clone 即用
+```
+
+**本机验证**: `~/.hermes/skills/stop-slop-cn/SKILL.md` 存在 ✅ · 包含 9 条完整规则 ✅ · 含 `examples.md` 示例文件 ✅
+
+## 使用方法
+
+**触发方式一：直接指令**
+```
+用 stop-slop-cn 把这段话改成人话：[粘贴文本]
+```
+
+**触发方式二：Skill 调用**
+```
+应用 stop-slop-cn 润色刚才的回复
+```
+
+**适用场景**: 把 AI 回复的套话、黑话、直译腔、模板化表达改得像正常人写的中文。尤其适合 Opus 4.7+、GPT-5.2+ 等强模型（它们更容易产出"高级 AI 味"）。
+
+> 零配置、零依赖、无需 API Key、无需 GPU。安装即用。

@@ -1,0 +1,36 @@
+{
+  "last_weekly": {
+    "date": "2026-09-21",
+    "open": 33.13,
+    "close": 33.27,
+    "high": 34,
+    "low": 32.91,
+    "volume": 1019942,
+    "amount": 3403516540,
+    "amplitude": 3.33,
+    "changePercent": 1.53,
+    "change": 0.5,
+    "turnoverRate": 6.13,
+    "timestamp": 1789920000000,
+    "tz": "Asia/Shanghai",
+    "code": "600460"
+  },
+  "last_monthly": {
+    "date": "2026-09-21",
+    "open": 34,
+    "close": 33.27,
+    "high": 34.05,
+    "low": 29,
+    "volume": 10988886,
+    "amount": 34541559947,
+    "amplitude": 14.78,
+    "changePercent": -2.61,
+    "change": -0.89,
+    "turnoverRate": 66.04,
+    "timestamp": 1789920000000,
+    "tz": "Asia/Shanghai",
+    "code": "600460"
+  },
+  "weekly_count": 1180,
+  "monthly_count": 281
+}

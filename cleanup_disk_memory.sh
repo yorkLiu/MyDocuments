@@ -143,6 +143,97 @@ cleanup_hermes() {
     fi
 }
 
+# 5b. 清理 Hermes 会话数据（state.db: 停服务 → doctor → 优化 → 剪除过期会话 → 重启服务）
+cleanup_hermes_sessions() {
+    section "清理 Hermes 会话数据"
+
+    if ! command -v hermes &>/dev/null; then
+        log "hermes CLI 不在 PATH 中，跳过"
+        return 0
+    fi
+
+    # 先停掉所有 Hermes 进程（gateway、Desktop、dashboard、cron）
+    hermes gateway stop </dev/null >/dev/null 2>&1 || true
+
+    # 确认没有进程还占着数据库
+    hermes doctor </dev/null >/dev/null 2>&1 || true
+
+    # 优化 FTS + VACUUM
+    hermes sessions optimize </dev/null >/dev/null 2>&1 || true
+
+    # 如果你的 state.db 很大（老版本 FTS 布局），再跑这个（能回收很多空间）
+    hermes sessions optimize-storage --yes </dev/null >/dev/null 2>&1 || true
+
+    # 预览会删什么（不真正删除）
+    hermes sessions prune --dry-run --yes </dev/null >/dev/null 2>&1 || true
+
+    # 只清理特定来源
+    hermes sessions prune --source cron --older-than 7 --yes </dev/null >/dev/null 2>&1 || true
+    hermes sessions prune --source telegram --older-than 60 --yes </dev/null >/dev/null 2>&1 || true
+
+    # 重新启动 hermes gateway
+    hermes gateway start </dev/null >/dev/null 2>&1 || true
+
+    log "${GREEN}✓ Hermes 会话数据清理完成（gateway 已重启）${NC}"
+}
+
+# 5c. 清理 x-agent 日志（删除 3 天前的 *.log 文件与 YYYYMMDD 子目录，保留最近 3 天）
+cleanup_xagent_logs() {
+    section "清理 x-agent 日志（保留最近 3 天）"
+    local base="/data/hermes/workspace/x-agent"
+    local log_dirs=(
+        "$base/auto-reply/logs"
+        "$base/comment-agent/logs"
+        "$base/push-agent/logs"
+        "$base/logs"
+    )
+
+    if [ ! -d "$base" ]; then
+        log "x-agent 目录不存在，跳过"
+        return 0
+    fi
+
+    # 删除 3 天前的 *.log 文件（按 mtime，含 YYYYMMDD 子目录内的）
+    local fcount
+    fcount=$(find "${log_dirs[@]}" -type f -name "*.log" -mtime +3 2>/dev/null | wc -l | tr -d ' \n')
+    find "${log_dirs[@]}" -type f -name "*.log" -mtime +3 -delete 2>/dev/null || true
+    log "已清理 ${fcount:-0} 个 3 天前的 *.log 文件"
+
+    # 删除 3 天前的 YYYYMMDD 日志子目录（按名称日期）
+    local cutoff sub name dcount=0
+    cutoff=$(date -d "3 days ago" +%Y%m%d)
+    for sub in "$base/auto-reply/logs"/*/ "$base/comment-agent/logs"/*/ "$base/push-agent/logs"/*/; do
+        [ -d "$sub" ] || continue
+        name=$(basename "$sub")
+        if echo "$name" | grep -Eq '^[0-9]{8}$' && [ "$name" -lt "$cutoff" ]; then
+            rm -rf "$sub" 2>/dev/null || true
+            dcount=$((dcount + 1))
+        fi
+    done
+    log "已清理 ${dcount} 个 3 天前的 YYYYMMDD 日志子目录"
+}
+
+# 5d. 清理 webui 会话 run journal + uv 缓存
+# 11/09: webui/sessions/_run_journal 是无声磁盘大头 (单会话可达 4-9G), uv 缓存 ~3.5G,
+# 磁盘 98% 时 Chromium 写 profile 撞 ENOSPC 死机 => x-agent 批次中途浏览器全灭 (goto closed ×40+)
+cleanup_hermes_webui() {
+    section "清理 webui 会话 journal 与 uv 缓存"
+    local hermes_home="${HERMES_HOME:-$HOME/.hermes}"
+    local jdir="$hermes_home/webui/sessions/_run_journal"
+    if [ -d "$jdir" ]; then
+        local jcount
+        jcount=$(find "$jdir" -maxdepth 1 -mindepth 1 -type d -mtime +7 2>/dev/null | wc -l | tr -d ' \n')
+        jcount=${jcount:-0}
+        find "$jdir" -maxdepth 1 -mindepth 1 -type d -mtime +7 -exec rm -rf {} + 2>/dev/null || true
+        log "已清理 ${jcount} 个 7 天前的 webui 会话 journal (当前会话 mtime 新, 不会被误删)"
+    else
+        log "webui journal 目录不存在，跳过"
+    fi
+    rm -rf "$hermes_home/cache/uv" 2>/dev/null || true
+    rm -rf "${HOME}/.cache/uv" 2>/dev/null || true
+    log "✓ uv 缓存已清理"
+}
+
 # 6. 清理 Docker 垃圾
 cleanup_docker() {
     section "清理 Docker 垃圾"
@@ -216,6 +307,9 @@ main() {
     cleanup_journal
     cleanup_user_cache
     cleanup_hermes
+    cleanup_hermes_sessions
+    cleanup_xagent_logs
+    cleanup_hermes_webui
     cleanup_docker
     cleanup_python
     cleanup_tmp
